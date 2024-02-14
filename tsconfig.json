@@ -7,7 +7,7 @@
       "@config/*": ["config/*"],
       "@pages/*": ["pages/*"],
       "@hooks/*": ["hooks/*"],
-      "@types/*": ["types/*"],
+      "@customTypes/*": ["types/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
       "@stores/*": ["stores/*"],
