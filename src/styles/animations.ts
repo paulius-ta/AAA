@@ -6,7 +6,7 @@ const animations = css`
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-2000%);
+      transform: translateX(-18000px);
     }
   }
 `;
