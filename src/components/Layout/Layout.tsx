@@ -9,8 +9,9 @@ interface ComponentProps extends Component {
 const Root = styled.div`
   max-width: 1240px;
   margin: auto;
+  padding: 0 16px;
   display: grid;
-  grid-template-columns: auto 456px;
+  grid-template-columns: 1fr 1fr;
   gap: 50px;
 `;
 

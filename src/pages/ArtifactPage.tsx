@@ -1,21 +1,20 @@
 import styled, {css} from 'styled-components';
 import Layout from '@components/Layout/Layout.tsx';
 import ScrollingText from '@components/ScrollingText/ScrollingText.tsx';
+import Slider from '@components/Slider/Slider.tsx';
 
-const Root = styled.div``;
+const Root = styled.div`
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+`;
 
 const StyledScrollingText = styled(ScrollingText)`
   ${() => css`
+    max-height: 100%;
+    max-width: 100%;
     margin-top: 50px;
     margin-bottom: 70px;
-  `};
-`;
-
-const Box1 = styled.div`
-  ${() => css`
-    height: 700px;
-    width: 100%;
-    background: #f8e1b3;
   `};
 `;
 
@@ -28,11 +27,16 @@ const Box2 = styled.div`
 `;
 
 const ArtifactPage = () => {
+  const images = [
+    {url: '/src/assets/images/artifact-1.png'},
+    {url: '/src/assets/images/artifact-2.png'},
+  ];
+
   return (
     <Root>
       <StyledScrollingText />
       <Layout>
-        <Box1 />
+        <Slider images={images} />
         <Box2 />
       </Layout>
     </Root>
