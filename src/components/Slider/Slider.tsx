@@ -77,25 +77,17 @@ const Pagination = styled.div`
   `};
 `;
 
-const NavigationWrapper = styled.div`
-  ${() => css`
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: space-between;
-    z-index: 1;
-  `};
-`;
-
 const NavigationNext = styled.div`
   ${() => css`
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
     height: 50px;
     width: 50px;
     margin: 0 10px;
     background: url('/src/assets/icons/chevron-right.svg') no-repeat center;
+    z-index: 1;
 
     &.swiper-button-disabled {
       visibility: hidden;
@@ -105,7 +97,8 @@ const NavigationNext = styled.div`
 
 const NavigationPrev = styled(NavigationNext)`
   ${() => css`
-    transform: rotate(180deg);
+    left: 0;
+    transform: translateY(-50%) rotate(180deg);
   `};
 `;
 
@@ -123,10 +116,8 @@ const Slider = ({images}: ComponentProps) => {
           ))}
         </swiper-container>
 
-        <NavigationWrapper>
-          <NavigationPrev id={'customPrev'} />
-          <NavigationNext id={'customNext'} />
-        </NavigationWrapper>
+        <NavigationPrev id={'customPrev'} />
+        <NavigationNext id={'customNext'} />
       </SwiperWrapper>
 
       <Pagination id={'customPagination'}></Pagination>
