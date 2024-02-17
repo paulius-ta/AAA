@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
 import Layout from '@components/Layout/Layout.tsx';
 import ScrollingText from '@components/ScrollingText/ScrollingText.tsx';
-import Slider from '@components/Slider/Slider.tsx';
+import ImageSlider from '@components/ImageSlider/ImageSlider.tsx';
 
 const Root = styled.div`
   width: 100%;
@@ -36,7 +36,7 @@ const ArtifactPage = () => {
     <Root>
       <StyledScrollingText />
       <Layout>
-        <Slider images={images} />
+        <ImageSlider images={images} />
         <Box2 />
       </Layout>
     </Root>

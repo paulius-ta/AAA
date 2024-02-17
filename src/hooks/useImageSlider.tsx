@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react';
 import {register} from 'swiper/element/bundle';
 import {SwiperContainer} from 'swiper/element/bundle';
 
-const useSlider = () => {
+const useImageSlider = () => {
   const swiperRef = useRef<SwiperContainer>(null);
 
   useEffect(() => {
@@ -38,4 +38,4 @@ const useSlider = () => {
   };
 };
 
-export default useSlider;
+export default useImageSlider;

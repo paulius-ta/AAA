@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
 import 'swiper/swiper-bundle.css';
 import Component from '@customTypes/Component.ts';
-import useSlider from '@hooks/useSlider.tsx';
+import useImageSlider from '@hooks/useImageSlider.tsx';
 import colors from '@styles/colors.ts';
 
 interface ImageUrl {
@@ -102,8 +102,8 @@ const NavigationPrev = styled(NavigationNext)`
   `};
 `;
 
-const Slider = ({images}: ComponentProps) => {
-  const {swiperRef} = useSlider();
+const ImageSlider = ({images}: ComponentProps) => {
+  const {swiperRef} = useImageSlider();
 
   return (
     <Root>
@@ -125,4 +125,4 @@ const Slider = ({images}: ComponentProps) => {
   );
 };
 
-export default Slider;
+export default ImageSlider;
