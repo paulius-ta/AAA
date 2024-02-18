@@ -12,16 +12,14 @@ const GlobalStyle = createGlobalStyle`
   
   ${() => css`
     html {
+      height: 100%;
       background: ${colors.background};
     }
 
     body {
-      background: ${colors.background};
+      height: 100%;
       font-family: 'foreign', sans-serif;
     }
-
-    height: 100%;
-    width: 100%;
   `}
 `;
 

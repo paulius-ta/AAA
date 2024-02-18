@@ -15,7 +15,7 @@ interface ComponentProps extends Component {
 const Root = styled.div`
   ${() => css`
     height: calc(100% - 70px);
-    min-height: 0;
+    min-height: 700px;
     min-width: 0;
   `};
 `;

@@ -11,7 +11,7 @@ const Root = styled.div`
   margin: auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 50px;
 `;
 
