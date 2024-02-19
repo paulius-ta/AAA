@@ -11,9 +11,16 @@ interface ComponentProps extends Component {
   boxed?: boolean;
 }
 
-const Root = styled.p<{$style?: string; $small?: boolean; $large?: boolean}>`
-  ${({$style}) => css`
+const Root = styled.p<{
+  $style?: string;
+  $small?: boolean;
+  $large?: boolean;
+  $boxed?: boolean;
+}>`
+  ${({$style, $small, $large, $boxed}) => css`
+    height: fit-content;
     font-family: 'foreign', sans-serif;
+    font-weight: normal;
     font-size: 16px;
     line-height: 20px;
     color: ${colors.primaryText};
@@ -21,29 +28,41 @@ const Root = styled.p<{$style?: string; $small?: boolean; $large?: boolean}>`
     ${$style === 'bold' &&
     css`
       font-family: 'foreign-bold', sans-serif;
+      font-weight: normal;
+      letter-spacing: 0.1rem;
     `}
 
     ${$style === 'extraBold' &&
     css`
       font-family: 'foreign-extra-bold', sans-serif;
+      font-weight: normal;
+      letter-spacing: 0.1rem;
     `}
 
     ${$style === 'title' &&
     css`
       font-family: 'foreign-title', sans-serif;
+      font-weight: normal;
     `}
 
-    ${$style === 'boxed' &&
+    ${$small && css``}
+
+    ${$large && css``}
+    
+    ${$boxed &&
     css`
       color: ${colors.secondaryText};
       background: ${colors.primaryText};
+      border-radius: 5px;
+      padding: 0 10px;
+      line-height: 150%;
     `}
   `};
 `;
 
-const Text = ({children, style, small, large}: ComponentProps) => {
+const Text = ({children, style, small, large, boxed}: ComponentProps) => {
   return (
-    <Root $style={style} $small={small} $large={large}>
+    <Root $style={style} $small={small} $large={large} $boxed={boxed}>
       {children}
     </Root>
   );
