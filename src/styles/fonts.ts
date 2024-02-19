@@ -21,6 +21,11 @@ const fonts = css`
     src: url('/src/assets/fonts/ForeignAlienExtraBold-rgxv9.otf')
       format('opentype');
   }
+
+  @font-face {
+    font-family: 'galactico';
+    src: url('/src/assets/fonts/GalacticoBasic-r1ny.otf') format('opentype');
+  }
 `;
 
 export default fonts;
