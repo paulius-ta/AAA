@@ -6,6 +6,7 @@ const colors = {
   primaryOnAction: 'rgb(255,255,255, 1)',
   primaryText: 'rgba(0, 0, 0, 1)',
   secondaryText: 'rgb(255,255,255, 1)',
+  error: 'rgb(255,0,0)',
 };
 
 export default colors;
