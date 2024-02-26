@@ -1,6 +1,5 @@
 import styled, {css} from 'styled-components';
 import 'swiper/swiper-bundle.css';
-import Component from '@customTypes/Component.ts';
 import useImageSlider from '@hooks/useImageSlider.tsx';
 import colors from '@styles/colors.ts';
 
@@ -8,7 +7,7 @@ interface ImageUrl {
   url: string;
 }
 
-interface ComponentProps extends Component {
+interface ComponentProps extends CustomComponent {
   images: ImageUrl[];
 }
 

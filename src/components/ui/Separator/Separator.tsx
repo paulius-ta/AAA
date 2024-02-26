@@ -1,8 +1,7 @@
 import styled, {css} from 'styled-components';
-import Component from '@customTypes/Component.ts';
 import colors from '@styles/colors.ts';
 
-interface ComponentProps extends Component {
+interface ComponentProps extends CustomComponent {
   space?: number;
 }
 

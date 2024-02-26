@@ -1,8 +1,7 @@
 import styled, {css} from 'styled-components';
-import Component from '@customTypes/Component.ts';
 import attributeColors from '@styles/attributeColors.ts';
 
-interface ComponentProps extends Component {
+interface ComponentProps extends CustomComponent {
   data: string[];
 }
 

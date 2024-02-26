@@ -1,10 +1,9 @@
 import styled, {css} from 'styled-components';
-import Component from '@customTypes/Component.ts';
 import {FieldValues, Path, UseFormRegister} from 'react-hook-form';
 import Label from '@components/ui/Label/Label.tsx';
 import ErrorText from '@components/ui/Error/ErrorText.tsx';
 
-interface ComponentProps<T extends FieldValues> extends Component {
+interface ComponentProps<T extends FieldValues> extends CustomComponent {
   register?: UseFormRegister<T>;
   name?: Path<T>;
   label?: string;

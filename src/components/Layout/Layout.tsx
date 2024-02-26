@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import {ReactNode} from 'react';
-import Component from '@customTypes/Component.ts';
 
-interface ComponentProps extends Component {
+interface ComponentProps extends CustomComponent {
   children?: ReactNode;
 }
 

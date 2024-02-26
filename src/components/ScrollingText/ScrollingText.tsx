@@ -1,7 +1,6 @@
 import styled, {css} from 'styled-components';
-import Component from '@customTypes/Component.ts';
 
-interface ComponentProps extends Component {}
+interface ComponentProps extends CustomComponent {}
 
 const Root = styled.div`
   ${() => css`
