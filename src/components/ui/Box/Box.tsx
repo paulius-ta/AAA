@@ -4,20 +4,26 @@ import colors from '@styles/colors.ts';
 
 interface ComponentProps extends CustomComponent {
   children: ReactNode;
+  padding?: number;
 }
 
-const Root = styled.div`
-  ${() => css`
+const Root = styled.div<{$padding?: number}>`
+  ${({$padding}) => css`
     width: 100%;
     height: fit-content;
     background: ${colors.boxBackground};
     border-radius: 10px;
-    padding: 30px;
+    padding: 20px;
+
+    ${$padding &&
+    css`
+      padding: ${$padding}px;
+    `}
   `};
 `;
 
-const Box = ({children}: ComponentProps) => {
-  return <Root>{children}</Root>;
+const Box = ({children, padding}: ComponentProps) => {
+  return <Root $padding={padding}>{children} </Root>;
 };
 
 export default Box;
