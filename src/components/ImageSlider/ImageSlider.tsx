@@ -85,7 +85,7 @@ const NavigationNext = styled.div`
     height: 50px;
     width: 50px;
     margin: 0 10px;
-    background: url('/src/assets/icons/chevron-right.svg') no-repeat center;
+    background: url('/src/assets/icons/ic_chevron-right.svg') no-repeat center;
     z-index: 1;
 
     &.swiper-button-disabled {
