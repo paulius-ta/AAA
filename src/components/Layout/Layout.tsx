@@ -6,7 +6,6 @@ interface ComponentProps extends CustomComponent {
 }
 
 const Root = styled.div`
-  box-sizing: border-box;
   max-width: 1240px;
   margin: auto;
   padding: 0 16px;

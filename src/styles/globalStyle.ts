@@ -19,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
     body {
       height: 100%;
       font-family: 'foreign', sans-serif;
+
+      * {
+        box-sizing: border-box;
+      }
     }
   `}
 `;

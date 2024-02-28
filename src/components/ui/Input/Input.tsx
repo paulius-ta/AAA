@@ -15,7 +15,6 @@ const Root = styled.div<{$hasLabel: boolean}>`
   ${({$hasLabel}) => css`
     position: relative;
     width: 100%;
-    box-sizing: border-box;
 
     ${$hasLabel &&
     css`
