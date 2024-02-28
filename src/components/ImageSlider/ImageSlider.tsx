@@ -13,9 +13,8 @@ interface ComponentProps extends CustomComponent {
 
 const Root = styled.div`
   ${() => css`
-    height: calc(100% - 70px);
-    min-height: 700px;
     min-width: 0;
+    aspect-ratio: 1;
   `};
 `;
 

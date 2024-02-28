@@ -6,12 +6,13 @@ interface ComponentProps extends CustomComponent {
 }
 
 const Root = styled.div`
+  box-sizing: border-box;
   max-width: 1240px;
   margin: auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 50px;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 80px;
 `;
 
 const Layout = ({children}: ComponentProps) => {
