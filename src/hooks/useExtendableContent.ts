@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 const useExtendableContent = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const onClick = () => {
     setIsOpen(prev => !prev);

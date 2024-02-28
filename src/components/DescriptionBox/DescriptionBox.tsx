@@ -6,6 +6,7 @@ import {Description} from '@customTypes/model/apiTypes.ts';
 import Text from '@components/ui/Text/Text.tsx';
 import Attributes from '@components/DescriptionBox/elements/Attributes.tsx';
 import colors from '@styles/colors.ts';
+import useExtendableContent from '@hooks/useExtendableContent.ts';
 interface ComponentProps extends CustomComponent {
   data: Description;
 }
@@ -17,15 +18,22 @@ const TopContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-content: center;
-    margin-bottom: 20px;
   `};
 `;
 
-const BottomContainer = styled.div`
-  ${() => css`
+const BottomContainer = styled.div<{$isOpen: boolean}>`
+  ${({$isOpen}) => css`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 20px;
+
+    ${!$isOpen &&
+    css`
+      max-height: 0;
+      overflow: hidden;
+      margin-top: 0;
+    `}
   `};
 `;
 
@@ -53,14 +61,33 @@ const AttributesWrapper = styled.div`
   `};
 `;
 
+const IconWrapper = styled.div`
+  ${() => css`
+    cursor: pointer;
+  `};
+`;
+
+const StyledIcon = styled(Icon)<{$isOpen: boolean}>`
+  ${({$isOpen}) => css`
+    ${$isOpen &&
+    css`
+      transform: rotate(180deg);
+    `}
+  `};
+`;
+
 const DescriptionBox = ({data}: ComponentProps) => {
+  const {isOpen, onClick} = useExtendableContent();
+
   return (
     <Root padding={30}>
       <TopContainer>
         <Icon icon={iconDescription} />
-        <Icon icon={iconChevronDown} />
+        <IconWrapper onClick={() => onClick()}>
+          <StyledIcon icon={iconChevronDown} $isOpen={isOpen} />
+        </IconWrapper>
       </TopContainer>
-      <BottomContainer>
+      <BottomContainer $isOpen={isOpen}>
         <Row>
           <Text>Origin</Text>
           <Text boxed>{data.origin?.join(', ')}</Text>
