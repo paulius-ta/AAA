@@ -8,6 +8,13 @@ components:
   schemas:
     Description:
       type: object
+      required:
+        - id
+        - origin
+        - number
+        - condition
+        - dimensions
+        - attributes
       properties:
         id:
           type: integer
@@ -32,6 +39,9 @@ components:
             $ref: '#/components/schemas/Attribute'
     Attribute:
       type: object
+      required:
+        - id
+        - type
       properties:
         id:
           type: string

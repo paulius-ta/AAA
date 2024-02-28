@@ -12,17 +12,17 @@ export interface components {
   schemas: {
     Description: {
       /** Format: int64 */
-      id?: number;
-      origin?: string[];
+      id: number;
+      origin: string[];
       /** Format: int64 */
-      number?: number;
-      condition?: string;
-      dimensions?: number[];
-      attributes?: components["schemas"]["Attribute"][];
+      number: number;
+      condition: string;
+      dimensions: number[];
+      attributes: components["schemas"]["Attribute"][];
     };
     Attribute: {
-      id?: string;
-      type?: string;
+      id: string;
+      type: string;
     };
   };
   responses: never;
