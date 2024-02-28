@@ -18,9 +18,9 @@ export interface components {
       number: number;
       condition: string;
       dimensions: number[];
-      attributes: components["schemas"]["Attribute"][];
+      attributes: components["schemas"]["ArtifactAttribute"][];
     };
-    Attribute: {
+    ArtifactAttribute: {
       id: string;
       type: string;
     };

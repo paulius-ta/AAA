@@ -36,8 +36,8 @@ components:
         attributes:
           type: array
           items:
-            $ref: '#/components/schemas/Attribute'
-    Attribute:
+            $ref: '#/components/schemas/ArtifactAttribute'
+    ArtifactAttribute:
       type: object
       required:
         - id
