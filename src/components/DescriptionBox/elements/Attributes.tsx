@@ -1,8 +1,8 @@
 import styled, {css} from 'styled-components';
-import attributeColors from '@styles/attributeColors.ts';
+import {ArtifactAttribute} from '@customTypes/model/apiTypes.ts';
 
 interface ComponentProps extends CustomComponent {
-  data: string[];
+  data: ArtifactAttribute[];
 }
 
 const Root = styled.div`
@@ -13,37 +13,33 @@ const Root = styled.div`
   `};
 `;
 
-const Attribute = styled.p<{$type: number}>`
+const Attribute = styled.p<{$type?: string}>`
   ${({$type}) => css`
     font-family: 'galactico', sans-serif;
     font-weight: normal;
     letter-spacing: 5px;
     font-size: 16px;
     line-height: 150%;
-    background: ${attributeColors[$type]};
+    background: ${$type};
     border-radius: 5px;
     padding: 0 10px;
   `};
 `;
 
-const Text = styled.span<{$type: number}>`
+const Text = styled.span<{$type: string}>`
   ${({$type}) => css`
-    color: ${attributeColors[$type]};
+    color: ${$type};
     filter: invert();
   `};
 `;
 
 const Attributes = ({data}: ComponentProps) => {
-  const getType = (attribute: string) => {
-    return parseInt(attribute[0], 36) - 9;
-  };
-
   return (
     <Root>
-      {data.map(attribute => {
+      {data.map((attribute, index) => {
         return (
-          <Attribute $type={getType(attribute)}>
-            <Text $type={getType(attribute)}>{attribute}</Text>
+          <Attribute key={index} $type={attribute.type}>
+            <Text $type={attribute.type}>{attribute.id}</Text>
           </Attribute>
         );
       })}

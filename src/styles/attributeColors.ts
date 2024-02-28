@@ -28,7 +28,6 @@
 // };
 
 const attributeColors = [
-  '#000',
   '#00F446',
   '#00FF08',
   '#3EFF00',
