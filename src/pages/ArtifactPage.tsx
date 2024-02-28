@@ -4,6 +4,7 @@ import ScrollingText from '@components/ScrollingText/ScrollingText.tsx';
 import ImageSlider from '@components/ImageSlider/ImageSlider.tsx';
 import DescriptionBox from '@components/DescriptionBox/DescriptionBox.tsx';
 import {dataDescription} from '@data/dataDescription.ts';
+import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -22,6 +23,9 @@ const StyledScrollingText = styled(ScrollingText)`
 const LeftSideContainer = styled.div`
   ${() => css`
     min-width: 0; // TODO: solve why image slider goes crazy without this
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   `};
 `;
 
@@ -40,6 +44,7 @@ const ArtifactPage = () => {
       <StyledScrollingText />
       <Layout>
         <LeftSideContainer>
+          <IdentifierBox identifier={dataDescription.id} />
           <ImageSlider images={images} />
         </LeftSideContainer>
 
