@@ -1,4 +1,4 @@
-import {components} from '@customTypes/schema/schema.ts';
+import {components} from '@customTypes/schemas/schemas.ts';
 
 export type SchemaTypes = components['schemas'];
 

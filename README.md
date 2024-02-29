@@ -4,4 +4,4 @@
 
 ## commands
 
-`npx openapi-typescript src/types/schema/schema.yaml -o src/types/schema/schema.ts`
+`npx openapi-typescript src/types/schemas/schemas.yaml -o src/types/schemas/schemas.ts`
