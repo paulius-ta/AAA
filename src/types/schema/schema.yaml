@@ -47,3 +47,28 @@ components:
           type: string
         type:
           type: string
+    History:
+      type: object
+      required:
+        - id
+        - entries
+      properties:
+        id:
+          type: integer
+          format: int64
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoryEntry'
+    HistoryEntry:
+      type: object
+      required:
+        - date
+        - amount
+      properties:
+        date:
+          type: string
+          format: date
+        amount:
+          type: string
+          format: decimal
