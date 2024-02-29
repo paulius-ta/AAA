@@ -44,6 +44,7 @@ const Row = styled.div`
     align-items: center;
   `};
 `;
+
 const GridRow = styled.div`
   ${() => css`
     display: grid;

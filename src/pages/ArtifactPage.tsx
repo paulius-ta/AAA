@@ -5,6 +5,8 @@ import ImageSlider from '@components/ImageSlider/ImageSlider.tsx';
 import DescriptionBox from '@components/DescriptionBox/DescriptionBox.tsx';
 import {dataDescription} from '@data/dataDescription.ts';
 import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
+import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
+import {dataHistory} from '@data/dataHistory.ts';
 
 const Root = styled.div`
   ${() => css`
@@ -30,7 +32,11 @@ const LeftSideContainer = styled.div`
 `;
 
 const RightSideContainer = styled.div`
-  ${() => css``};
+  ${() => css`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  `};
 `;
 
 const ArtifactPage = () => {
@@ -49,6 +55,7 @@ const ArtifactPage = () => {
         </LeftSideContainer>
 
         <RightSideContainer>
+          <HistoryBox data={dataHistory} />
           <DescriptionBox data={dataDescription} />
         </RightSideContainer>
       </Layout>

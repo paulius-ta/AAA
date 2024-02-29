@@ -7,6 +7,7 @@ const colors = {
   primaryText: 'rgba(0, 0, 0, 1)',
   secondaryText: 'rgb(255,255,255, 1)',
   error: 'rgb(255,0,0)',
+  neutral: 'rgba(119, 119, 119, 1)',
 };
 
 export default colors;
