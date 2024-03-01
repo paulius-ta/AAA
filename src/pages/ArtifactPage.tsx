@@ -7,6 +7,7 @@ import {dataDescription} from '@data/dataDescription.ts';
 import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
 import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
 import {dataHistory} from '@data/dataHistory.ts';
+import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -55,6 +56,7 @@ const ArtifactPage = () => {
         </LeftSideContainer>
 
         <RightSideContainer>
+          <BidTimerBox />
           <HistoryBox data={dataHistory} />
           <DescriptionBox data={dataDescription} />
         </RightSideContainer>
