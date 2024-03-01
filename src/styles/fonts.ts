@@ -26,6 +26,11 @@ const fonts = css`
     font-family: 'galactico';
     src: url('/src/assets/fonts/GalacticoBasic-r1ny.otf') format('opentype');
   }
+
+  @font-face {
+    font-family: 'digital';
+    src: url('/src/assets/fonts/DS-DIGI.TTF') format('truetype');
+  }
 `;
 
 export default fonts;
