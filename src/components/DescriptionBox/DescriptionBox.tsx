@@ -81,7 +81,7 @@ const DescriptionBox = ({data}: ComponentProps) => {
   const {isOpen, onClick} = useExtendableContent();
 
   return (
-    <Root padding={30}>
+    <Root>
       <TopContainer>
         <Icon icon={iconDescription} />
         <IconWrapper onClick={() => onClick()}>
