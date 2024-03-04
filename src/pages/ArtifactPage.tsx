@@ -8,6 +8,8 @@ import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
 import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
 import {dataHistory} from '@data/dataHistory.ts';
 import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
+import Button from '@components/ui/Button/Button.tsx';
+import Input from '@components/ui/Input/Input.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -40,6 +42,15 @@ const RightSideContainer = styled.div`
   `};
 `;
 
+const BidInputContainer = styled.div`
+  ${() => css`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+  `};
+`;
+
 const ArtifactPage = () => {
   const images = [
     {url: '/src/assets/images/artifact-1.png'},
@@ -57,6 +68,12 @@ const ArtifactPage = () => {
 
         <RightSideContainer>
           <BidTimerBox />
+          <BidInputContainer>
+            <Input placeholder={'946'} showCurrency />
+            <Button w100 onClick={() => {}}>
+              Make a bid
+            </Button>
+          </BidInputContainer>
           <HistoryBox data={dataHistory} />
           <DescriptionBox data={dataDescription} />
         </RightSideContainer>
