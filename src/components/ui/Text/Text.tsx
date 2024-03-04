@@ -15,7 +15,7 @@ const Root = styled.p<{$style?: string; $size?: number; $boxed?: boolean}>`
     font-family: 'foreign', sans-serif;
     font-weight: normal;
     font-size: ${$size ? $size : '16'}px;
-    line-height: 20px;
+    line-height: 125%;
     color: ${colors.primaryText};
 
     ${$style === 'bold' &&
