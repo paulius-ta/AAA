@@ -29,7 +29,7 @@ const fonts = css`
 
   @font-face {
     font-family: 'digital';
-    src: url('/src/assets/fonts/DS-DIGI.TTF') format('truetype');
+    src: url('/src/assets/fonts/DigitalNumbers-Regular.ttf') format('truetype');
   }
 `;
 

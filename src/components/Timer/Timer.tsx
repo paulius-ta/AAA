@@ -1,5 +1,10 @@
 import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
+import useTimer from '@hooks/useTimer.ts';
+
+interface ComponentProps extends CustomComponent {
+  endTime: number;
+}
 
 const Root = styled.div`
   ${() => css`
@@ -12,13 +17,14 @@ const Root = styled.div`
     color: ${colors.timerText};
     font-family: 'digital', sans-serif;
     font-weight: normal;
-    font-size: 32px;
+    font-size: 24px;
     padding: 10px;
     border-radius: 5px;
   `};
 `;
 
-const Timer = () => {
-  return <Root>39:51:09</Root>;
+const Timer = ({endTime}: ComponentProps) => {
+  const {formattedTime} = useTimer(endTime);
+  return <Root>{formattedTime}</Root>;
 };
 export default Timer;
