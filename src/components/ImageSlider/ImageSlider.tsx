@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 import 'swiper/swiper-bundle.css';
-import useImageSlider from '@hooks/useImageSlider.tsx';
+import useImageSlider from '@hooks/useImageSlider.ts';
 import colors from '@styles/colors.ts';
 
 interface ImageUrl {
