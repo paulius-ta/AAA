@@ -6,6 +6,7 @@ import Text from '@components/ui/Text/Text.tsx';
 import Timer from '@components/Timer/Timer.tsx';
 import Separator from '@components/ui/Separator/Separator.tsx';
 import colors from '@styles/colors.ts';
+import useDateTimeFormatter from '@utils/useDateTimeFormatter.ts';
 
 const Root = styled(Box)``;
 
@@ -58,6 +59,8 @@ const TextWrapper = styled.div`
 `;
 
 const BidTimerBox = () => {
+  const {getTimestamp} = useDateTimeFormatter();
+
   return (
     <Root>
       <Row>
@@ -71,7 +74,7 @@ const BidTimerBox = () => {
         </LeftContainer>
         <Separator vertical space={20} />
         <RightContainer>
-          <Timer />
+          <Timer endTime={getTimestamp()} />
         </RightContainer>
       </Row>
     </Root>
