@@ -34,7 +34,7 @@ const SwiperWrapper = styled.div`
       img {
         height: 100%;
         width: 100%;
-        border-radius: 10px;
+        border-radius: 5px;
         object-fit: cover;
         object-position: center;
         overflow: hidden;
