@@ -72,3 +72,21 @@ components:
         amount:
           type: string
           format: decimal
+    Images:
+      type: object
+      required:
+        - id
+        - images
+      properties:
+        id:
+          type: integer
+          format: int64
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageUrl'
+    ImageUrl:
+      type: object
+      properties:
+        url:
+          type: string

@@ -35,6 +35,14 @@ export interface components {
       /** Format: decimal */
       amount: string;
     };
+    Images: {
+      /** Format: int64 */
+      id: number;
+      images: components["schemas"]["ImageUrl"][];
+    };
+    ImageUrl: {
+      url?: string;
+    };
   };
   responses: never;
   parameters: never;
