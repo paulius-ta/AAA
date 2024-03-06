@@ -10,6 +10,7 @@ import {dataHistory} from '@data/dataHistory.ts';
 import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
 import Button from '@components/ui/Button/Button.tsx';
 import Input from '@components/ui/Input/Input.tsx';
+import {dataImages} from '@data/dataImages.ts';
 
 const Root = styled.div`
   ${() => css`
@@ -52,20 +53,14 @@ const BidInputContainer = styled.div`
 `;
 
 const ArtifactPage = () => {
-  const images = [
-    {url: '/src/assets/images/artifact-1.png'},
-    {url: '/src/assets/images/artifact-2.png'},
-  ];
-
   return (
     <Root>
       <StyledScrollingText />
       <Layout>
         <LeftSideContainer>
           <IdentifierBox identifier={dataDescription.id} />
-          <ImageSlider images={images} />
+          <ImageSlider images={dataImages.images} />
         </LeftSideContainer>
-
         <RightSideContainer>
           <BidTimerBox />
           <BidInputContainer>
