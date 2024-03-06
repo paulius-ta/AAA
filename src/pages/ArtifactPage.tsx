@@ -14,7 +14,7 @@ import {dataImages} from '@data/dataImages.ts';
 
 const Root = styled.div`
   ${() => css`
-    padding-top: 50px;
+    padding: 50px 0;
     width: 100%;
     height: 100%;
   `};

@@ -5,10 +5,12 @@ import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
 import {dataDescription} from '@data/dataDescription.ts';
 import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
 import DescriptionBox from '@components/DescriptionBox/DescriptionBox.tsx';
+import ImagesBox from '@components/ImagesBox/ImagesBox.tsx';
+import {dataImages} from '@data/dataImages.ts';
 
 const Root = styled.div`
   ${() => css`
-    padding-top: 50px;
+    padding: 50px 0;
     width: 100%;
     height: 100%;
   `};
@@ -46,6 +48,7 @@ const CheckoutPage = () => {
           <IdentifierBox identifier={dataDescription.id} />
           <BidTimerBox />
           <DescriptionBox data={dataDescription} />
+          <ImagesBox data={dataImages} />
         </RightSideContainer>
       </Layout>
     </Root>
