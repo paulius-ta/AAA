@@ -1,11 +1,10 @@
 import styled, {css} from 'styled-components';
 import Box from '@components/ui/Box/Box.tsx';
-import Icon from '@components/ui/Icon/Icon.tsx';
-import useExtendableContent from '@hooks/useExtendableContent.ts';
-import {iconChevronDown, iconHistory} from '@assets/AssetsProvider.ts';
+import {iconHistory} from '@assets/AssetsProvider.ts';
 import {History} from '@customTypes/model/apiTypes.ts';
 import Text from '@components/ui/Text/Text.tsx';
 import colors from '@styles/colors.ts';
+import Accordion from '@components/Accordion/Accordion.tsx';
 
 interface ComponentProps extends CustomComponent {
   data: History;
@@ -13,51 +12,12 @@ interface ComponentProps extends CustomComponent {
 
 const Root = styled(Box)``;
 
-const TopContainer = styled.div`
-  ${() => css`
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-  `};
-`;
-
-const BottomContainer = styled.div<{$isOpen: boolean}>`
-  ${({$isOpen}) => css`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-
-    ${!$isOpen &&
-    css`
-      max-height: 0;
-      overflow: hidden;
-      margin-top: 0;
-    `}
-  `};
-`;
-
 const Row = styled.div`
   ${() => css`
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-  `};
-`;
-
-const IconWrapper = styled.div`
-  ${() => css`
-    cursor: pointer;
-  `};
-`;
-
-const StyledIcon = styled(Icon)<{$isOpen: boolean}>`
-  ${({$isOpen}) => css`
-    ${$isOpen &&
-    css`
-      transform: rotate(180deg);
-    `}
   `};
 `;
 
@@ -108,17 +68,9 @@ const Currency = styled.span`
 `;
 
 const HistoryBox = ({data}: ComponentProps) => {
-  const {isOpen, onClick} = useExtendableContent();
-
   return (
     <Root>
-      <TopContainer>
-        <Icon icon={iconHistory} />
-        <IconWrapper onClick={() => onClick()}>
-          <StyledIcon icon={iconChevronDown} $isOpen={isOpen} />
-        </IconWrapper>
-      </TopContainer>
-      <BottomContainer $isOpen={isOpen}>
+      <Accordion icon={iconHistory}>
         {data.entries.map((entry, index) => {
           return (
             <Row key={index}>
@@ -136,7 +88,7 @@ const HistoryBox = ({data}: ComponentProps) => {
             </Row>
           );
         })}
-      </BottomContainer>
+      </Accordion>
     </Root>
   );
 };
