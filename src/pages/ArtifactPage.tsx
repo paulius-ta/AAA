@@ -11,6 +11,8 @@ import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
 import Button from '@components/ui/Button/Button.tsx';
 import Input from '@components/ui/Input/Input.tsx';
 import {dataImages} from '@data/dataImages.ts';
+import {useNavigate} from 'react-router-dom';
+import routerPaths from '@config/routerPaths.ts';
 
 const Root = styled.div`
   ${() => css`
@@ -53,6 +55,11 @@ const BidInputContainer = styled.div`
 `;
 
 const ArtifactPage = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate({pathname: routerPaths.checkout()});
+  };
+
   return (
     <Root>
       <StyledScrollingText />
@@ -65,7 +72,7 @@ const ArtifactPage = () => {
           <BidTimerBox />
           <BidInputContainer>
             <Input placeholder={'946'} showCurrency />
-            <Button w100 onClick={() => {}}>
+            <Button w100 onClick={handleClick}>
               Make a bid
             </Button>
           </BidInputContainer>
