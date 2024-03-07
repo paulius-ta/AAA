@@ -5,6 +5,7 @@ import {History} from '@customTypes/model/apiTypes.ts';
 import Text from '@components/ui/Text/Text.tsx';
 import colors from '@styles/colors.ts';
 import Accordion from '@components/Accordion/Accordion.tsx';
+import {useState} from 'react';
 
 interface ComponentProps extends CustomComponent {
   data: History;
@@ -18,6 +19,15 @@ const Row = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+  `};
+`;
+
+const StyledRow = styled(Row)`
+  ${() => css`
+    font-size: 12px;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: underline;
   `};
 `;
 
@@ -68,10 +78,18 @@ const Currency = styled.span`
 `;
 
 const HistoryBox = ({data}: ComponentProps) => {
+  const [limit, setLimit] = useState(Math.min(data.entries.length, 3));
+  const [showAll, setShowAll] = useState(data.entries.length > limit);
+
+  const handleShowAll = () => {
+    setLimit(data.entries.length);
+    setShowAll(false);
+  };
+
   return (
     <Root>
       <Accordion icon={iconHistory}>
-        {data.entries.map((entry, index) => {
+        {data.entries.slice(0, limit).map((entry, index) => {
           return (
             <Row key={index}>
               <RowItem>
@@ -88,6 +106,9 @@ const HistoryBox = ({data}: ComponentProps) => {
             </Row>
           );
         })}
+        {showAll && (
+          <StyledRow onClick={handleShowAll}>Show all bids</StyledRow>
+        )}
       </Accordion>
     </Root>
   );
