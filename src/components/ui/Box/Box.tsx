@@ -22,8 +22,12 @@ const Root = styled.div<{$padding?: number}>`
   `};
 `;
 
-const Box = ({children, padding}: ComponentProps) => {
-  return <Root $padding={padding}>{children} </Root>;
+const Box = ({className, children, padding}: ComponentProps) => {
+  return (
+    <Root className={className} $padding={padding}>
+      {children}{' '}
+    </Root>
+  );
 };
 
 export default Box;

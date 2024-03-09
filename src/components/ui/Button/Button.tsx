@@ -30,9 +30,9 @@ const Root = styled.div<{$w100?: boolean}>`
     `}
   `};
 `;
-const Button = ({children, onClick, w100}: ComponentProps) => {
+const Button = ({className, children, onClick, w100}: ComponentProps) => {
   return (
-    <Root onClick={onClick} $w100={w100}>
+    <Root className={className} onClick={onClick} $w100={w100}>
       {children}
     </Root>
   );
