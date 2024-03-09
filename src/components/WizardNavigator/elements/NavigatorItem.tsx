@@ -47,7 +47,7 @@ const Index = styled.div<{$active: boolean; $disabled: boolean}>`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: url('/src/assets/icons/ic_orbit.svg') no-repeat center;
+        background: url('/src/assets/icons/ic_orbit-large.svg') no-repeat center;
         background-size: contain;
         animation: spin 4s linear infinite;
       }
