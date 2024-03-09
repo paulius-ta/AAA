@@ -35,6 +35,7 @@ const InputField = styled.input<{$showCurrency?: boolean}>`
     padding: 10px 20px;
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
+    background: ${colors.background};
 
     &::placeholder {
       color: ${colors.neutral};
