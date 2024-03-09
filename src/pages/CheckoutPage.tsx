@@ -7,6 +7,7 @@ import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
 import DescriptionBox from '@components/DescriptionBox/DescriptionBox.tsx';
 import ImagesBox from '@components/ImagesBox/ImagesBox.tsx';
 import {dataImages} from '@data/dataImages.ts';
+import WizardNavigator from '@components/WizardNavigator/WizardNavigator.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -43,7 +44,9 @@ const CheckoutPage = () => {
     <Root>
       <StyledScrollingText />
       <Layout>
-        <LeftSideContainer></LeftSideContainer>
+        <LeftSideContainer>
+          <WizardNavigator />
+        </LeftSideContainer>
         <RightSideContainer>
           <IdentifierBox identifier={dataDescription.id} />
           <BidTimerBox />
