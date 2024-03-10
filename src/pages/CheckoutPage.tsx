@@ -8,9 +8,7 @@ import DescriptionBox from '@components/DescriptionBox/DescriptionBox.tsx';
 import ImagesBox from '@components/ImagesBox/ImagesBox.tsx';
 import {dataImages} from '@data/dataImages.ts';
 import WizardNavigator from '@components/WizardNavigator/WizardNavigator.tsx';
-import ContactDetailsStep from '@components/Wizard/steps/ContactDetailsStep.tsx';
-import PaymentDetailsStep from '@components/Wizard/steps/PaymentDetailsStep.tsx';
-import PreviewStep from '@components/Wizard/steps/PreviewStep.tsx';
+import Wizard from '@components/Wizard/Wizard.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -49,9 +47,7 @@ const CheckoutPage = () => {
       <Layout>
         <LeftSideContainer>
           <WizardNavigator />
-          <ContactDetailsStep />
-          <PaymentDetailsStep />
-          <PreviewStep />
+          <Wizard />
         </LeftSideContainer>
         <RightSideContainer>
           <IdentifierBox identifier={dataDescription.id} />
