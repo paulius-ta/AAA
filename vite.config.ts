@@ -4,7 +4,21 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [svgr(), react()],
+  plugins: [
+    svgr(),
+    react({
+      babel: {
+        plugins: [
+          [
+            '@babel/plugin-proposal-decorators',
+            {
+              version: '2023-05',
+            },
+          ],
+        ],
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@assets': '/src/assets',
