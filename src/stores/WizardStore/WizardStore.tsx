@@ -1,12 +1,12 @@
-import {makeObservable, observable} from 'mobx';
+import {observable, action} from 'mobx';
 
 class WizardStore {
   INITIAL_STEP = 0;
 
-  @observable step = this.INITIAL_STEP;
+  @observable accessor step = this.INITIAL_STEP;
 
-  constructor() {
-    makeObservable(this);
+  @action setStep(step: number) {
+    this.step = step;
   }
 }
 
