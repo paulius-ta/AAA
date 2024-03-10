@@ -4,6 +4,7 @@ interface ComponentProps extends CustomComponent {
   index: number;
   active: boolean;
   disabled: boolean;
+  onClick: () => void;
 }
 
 const Root = styled.div`
@@ -61,10 +62,10 @@ const Index = styled.div<{$active: boolean; $disabled: boolean}>`
   `};
 `;
 
-const NavigatorItem = ({index, active, disabled}: ComponentProps) => {
+const NavigatorItem = ({onClick, index, active, disabled}: ComponentProps) => {
   return (
     <Root>
-      <Index $active={active} $disabled={disabled}>
+      <Index onClick={onClick} $active={active} $disabled={disabled}>
         {index}
       </Index>
     </Root>

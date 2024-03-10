@@ -1,10 +1,14 @@
-import {useStore} from '@stores/store.ts';
 import {observer} from 'mobx-react-lite';
+import useWizard from '@hooks/useWizard.ts';
 
 const Wizard = observer(() => {
-  const {wizardStore} = useStore();
+  const {getCurrentStep} = useWizard();
+  const currentStep = getCurrentStep();
 
-  return <div>{wizardStore.step}</div>;
+  if (!currentStep) return;
+  const Component = currentStep.component;
+
+  return <Component />;
 });
 
 export default Wizard;

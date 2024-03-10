@@ -1,5 +1,7 @@
 import styled, {css} from 'styled-components';
 import NavigatorItem from '@components/WizardNavigator/elements/NavigatorItem.tsx';
+import useWizardNavigator from '@hooks/useWizardNavigator.ts';
+import wizardSteps from '@config/wizardSteps.ts';
 
 const Root = styled.div`
   ${() => css`
@@ -11,19 +13,21 @@ const Root = styled.div`
 `;
 
 const WizardNavigator = () => {
+  const {activeStep, handleClick} = useWizardNavigator();
+
   return (
     <Root>
-      {Array(3)
-        .fill(undefined)
-        .map((_, index) => {
-          return (
-            <NavigatorItem
-              index={index + 1}
-              active={index === 0}
-              disabled={index === 2}
-            />
-          );
-        })}
+      {wizardSteps.map(step => {
+        return (
+          <NavigatorItem
+            onClick={() => handleClick(step.id)}
+            key={`${step.id}-step`}
+            index={step.id + 1}
+            active={step.id === activeStep}
+            disabled={false}
+          />
+        );
+      })}
     </Root>
   );
 };
