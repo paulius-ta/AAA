@@ -23,6 +23,11 @@ const fonts = css`
   }
 
   @font-face {
+    font-family: 'foreign-3d';
+    src: url('/src/assets/fonts/ForeignAlien3D-2OEvK.otf') format('opentype');
+  }
+
+  @font-face {
     font-family: 'galactico';
     src: url('/src/assets/fonts/GalacticoBasic-r1ny.otf') format('opentype');
   }
