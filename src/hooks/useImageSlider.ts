@@ -14,13 +14,13 @@ const useImageSlider = () => {
     const swiperParams = {
       slidesPerView: 1,
       spaceBetween: '20',
-      pagination: {
-        el: '#customPagination',
-        clickable: true,
-        bulletElement: 'div',
-        bulletClass: 'custom-bullet',
-        bulletActiveClass: 'custom-bullet--active',
-      },
+      // pagination: {
+      //   el: '#customPagination',
+      //   clickable: true,
+      //   bulletElement: 'div',
+      //   bulletClass: 'custom-bullet',
+      //   bulletActiveClass: 'custom-bullet--active',
+      // },
       navigation: {nextEl: '#customNext', prevEl: '#customPrev'},
       breakpoints: {},
       on: {
