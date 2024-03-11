@@ -1,4 +1,5 @@
 const colors = {
+  grid: 'rgba(255, 189, 45, 1)',
   background: 'rgba(249, 239, 219, 1)',
   boxBackground: 'rgba(248, 225, 179, 1)',
   primarySeparator: 'rgb(255,255,255, 1)',
