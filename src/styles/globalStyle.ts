@@ -8,14 +8,18 @@ const GlobalStyle = createGlobalStyle`
     ${resetCSS}
     ${fonts}
     ${animations}
+    
     ${() => css`
+      html,
+      body {
+        min-height: calc(100vh + 100px);
+      }
+
       html {
-        min-height: 100vh;
         background: ${colors.background};
       }
 
       body {
-        min-height: 100vh;
         font-family: 'foreign', sans-serif;
         background-size: 30px 30px;
         background-image: radial-gradient(
