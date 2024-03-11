@@ -2,11 +2,11 @@ import {css} from 'styled-components';
 
 const animations = css`
   @keyframes scrolling-text {
-    0% {
-      transform: translateX(0%);
+    from {
+      transform: translateX(0);
     }
-    100% {
-      transform: translateX(-18000px);
+    to {
+      transform: translateX(calc(-100% - 100px));
     }
   }
 `;
