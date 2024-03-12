@@ -38,7 +38,7 @@ const InputField = styled.input<{$showCurrency?: boolean}>`
     background: ${colors.background};
 
     &::placeholder {
-      color: ${colors.neutral};
+      color: ${colors.neutral20};
     }
 
     ${$showCurrency &&
