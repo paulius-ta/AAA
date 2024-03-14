@@ -7,6 +7,7 @@ import images from '@assets/icons/ic_images.svg?react';
 import contact from '@assets/icons/ic_contact.svg?react';
 import payment from '@assets/icons/ic_payment.svg?react';
 import preview from '@assets/icons/ic_preview.svg?react';
+import selectArrow from '@assets/icons/ic_select-arrow.svg?react';
 
 export const iconChevronRight = chevronRight;
 export const iconChevronDown = chevronDown;
@@ -17,3 +18,4 @@ export const iconImages = images;
 export const iconContact = contact;
 export const iconPayment = payment;
 export const iconPreview = preview;
+export const iconSelectArrow = selectArrow;
