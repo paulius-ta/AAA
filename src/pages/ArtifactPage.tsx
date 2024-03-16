@@ -9,7 +9,6 @@ import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
 import {dataHistory} from '@data/dataHistory.ts';
 import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
 import Button from '@components/ui/Button/Button.tsx';
-import Input from '@components/ui/Input/Input.tsx';
 import {dataImages} from '@data/dataImages.ts';
 import {useNavigate} from 'react-router-dom';
 import routerPaths from '@config/routerPaths.ts';
@@ -71,7 +70,6 @@ const ArtifactPage = () => {
         <RightSideContainer>
           <BidTimerBox />
           <BidInputContainer>
-            <Input placeholder={'946'} showCurrency />
             <Button w100 onClick={handleClick}>
               Make a bid
             </Button>
