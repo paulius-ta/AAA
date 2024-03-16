@@ -28,6 +28,7 @@ const Root = styled.div<{$hasLabel: boolean}>`
 const InputField = styled.input<{$showCurrency?: boolean}>`
   ${({$showCurrency}) => css`
     width: 100%;
+    height: 100%;
     font-family: 'foreign', sans-serif;
     font-weight: normal;
     font-size: 16px;
@@ -35,8 +36,9 @@ const InputField = styled.input<{$showCurrency?: boolean}>`
     padding: 10px 20px;
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
+    text-overflow: ellipsis;
 
-    &::placeholder {
+    ::placeholder {
       color: ${colors.neutral20};
     }
 
@@ -49,6 +51,7 @@ const InputField = styled.input<{$showCurrency?: boolean}>`
 
 const InputFieldWrapper = styled.div`
   ${() => css`
+    height: 44px;
     width: 100%;
     position: relative;
   `};

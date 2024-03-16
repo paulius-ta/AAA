@@ -6,7 +6,7 @@ interface ComponentProps extends CustomComponent {
   children: ReactNode;
 }
 
-const Root = styled.label`
+const Root = styled.div`
   ${() => css`
     position: absolute;
     top: -20px;

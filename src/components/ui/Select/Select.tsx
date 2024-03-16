@@ -4,12 +4,26 @@ import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconSelectArrow} from '@assets/AssetsProvider.ts';
 import colors from '@styles/colors.ts';
 
+interface ComponentProps extends CustomComponent {
+  options: SelectOption[];
+}
+
 const Root = styled(ReactSelect)`
   ${() => css`
+    width: 100%;
+    font-family: 'galactico', sans-serif;
+    font-weight: normal;
+    letter-spacing: 5px;
+    font-size: 15px;
+    line-height: 125%;
+    text-align: center;
+
     .select__control {
+      position: relative;
       height: 44px;
       border: 1px solid ${colors.neutral};
       border-radius: 5px;
+      padding: 10px 20px;
 
       &:hover {
         border: 1px solid ${colors.neutral};
@@ -22,11 +36,12 @@ const Root = styled(ReactSelect)`
     }
 
     .select__value-container {
-      display: none;
+      height: 100%;
+      max-width: 0;
+      padding: 0;
 
       &--has-value {
-        padding: 10px 20px;
-        display: grid;
+        max-width: unset;
       }
 
       &--has-value + .select__indicators {
@@ -34,16 +49,19 @@ const Root = styled(ReactSelect)`
       }
     }
 
-    .select__indicators {
+    .select__input-container {
       width: 100%;
     }
 
-    .select__indicator {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .select__single-value {
+      margin: 0;
+    }
+
+    .select__indicators {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .select__indicator-separator {
@@ -54,16 +72,15 @@ const Root = styled(ReactSelect)`
     .select__option--is-selected {
       background: ${colors.background};
     }
+
+    .select__input-container {
+      padding: 0;
+      margin: 5px 0 0;
+    }
   `};
 `;
 
-const options = [
-  {value: 'chocolate', label: 'Chocolate'},
-  {value: 'strawberry', label: 'Strawberry'},
-  {value: 'vanilla', label: 'Vanilla'},
-];
-
-const Select = () => {
+const Select = ({className, options}: ComponentProps) => {
   const DropdownIndicator = ({...props}: DropdownIndicatorProps) => (
     <components.DropdownIndicator {...props}>
       <Icon icon={iconSelectArrow} size={10} />
@@ -72,6 +89,9 @@ const Select = () => {
 
   return (
     <Root
+      placeholder={false}
+      isSearchable={false}
+      className={className}
       classNamePrefix={'select'}
       options={options}
       components={{DropdownIndicator}}
