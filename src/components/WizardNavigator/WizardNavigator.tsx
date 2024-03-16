@@ -1,3 +1,4 @@
+import {observer} from 'mobx-react-lite';
 import styled, {css} from 'styled-components';
 import NavigatorItem from '@components/WizardNavigator/elements/NavigatorItem.tsx';
 import useWizardNavigator from '@hooks/useWizardNavigator.ts';
@@ -12,7 +13,7 @@ const Root = styled.div`
   `};
 `;
 
-const WizardNavigator = () => {
+const WizardNavigator = observer(() => {
   const {activeStep, handleClick} = useWizardNavigator();
 
   return (
@@ -30,6 +31,6 @@ const WizardNavigator = () => {
       })}
     </Root>
   );
-};
+});
 
 export default WizardNavigator;
