@@ -4,3 +4,8 @@ interface CustomComponent {
   className?: string;
   id?: string;
 }
+
+interface SelectOption {
+  value: string | number;
+  label: string;
+}
