@@ -60,7 +60,7 @@ const Accordion = ({children, icon}: ComponentProps) => {
           <StyledIcon icon={iconChevronDown} $isOpen={isOpen} />
         </IconWrapper>
       </TopContainer>
-      <BottomContainer $isOpen={isOpen}>{children}</BottomContainer>
+      {isOpen && <BottomContainer $isOpen={isOpen}>{children}</BottomContainer>}
     </Root>
   );
 };
