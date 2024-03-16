@@ -4,6 +4,7 @@ import ContactDetailsForm from '@components/Wizard/elements/ContactDetailsForm.t
 import Button from '@components/ui/Button/Button.tsx';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconContact} from '@assets/AssetsProvider.ts';
+import useContactDetailsTransition from '@components/Wizard/transitions/useContactDetailsTransition.ts';
 
 const Root = styled(Box)`
   ${() => css`
@@ -25,11 +26,13 @@ const StyledIcon = styled(Icon)`
   `};
 `;
 const ContactDetailsStep = () => {
+  const {handleTransition} = useContactDetailsTransition();
+
   return (
     <Root>
       <StyledIcon icon={iconContact} />
       <ContactDetailsForm />
-      <StyledButton onClick={() => {}}>Next</StyledButton>
+      <StyledButton onClick={handleTransition}>Next</StyledButton>
     </Root>
   );
 };
