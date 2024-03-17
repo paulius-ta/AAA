@@ -87,6 +87,22 @@ components:
             $ref: '#/components/schemas/ImageUrl'
     ImageUrl:
       type: object
+      required:
+        - url
       properties:
         url:
+          type: string
+    PaymentMethods:
+      type: array
+      items:
+        $ref: '#/components/schemas/PaymentMethod'
+    PaymentMethod:
+      type: object
+      required:
+        - url
+        - value
+      properties:
+        url:
+          type: string
+        value:
           type: string

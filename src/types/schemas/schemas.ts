@@ -41,7 +41,12 @@ export interface components {
       images: components["schemas"]["ImageUrl"][];
     };
     ImageUrl: {
-      url?: string;
+      url: string;
+    };
+    PaymentMethods: components["schemas"]["PaymentMethod"][];
+    PaymentMethod: {
+      url: string;
+      value: string;
     };
   };
   responses: never;

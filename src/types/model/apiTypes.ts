@@ -8,3 +8,4 @@ export type History = SchemaTypes['History'];
 export type HistoryEntry = SchemaTypes['HistoryEntry'];
 export type Images = SchemaTypes['Images'];
 export type ImageUrl = SchemaTypes['ImageUrl'];
+export type PaymentMethods = SchemaTypes['PaymentMethods'];
