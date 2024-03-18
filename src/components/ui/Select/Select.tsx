@@ -23,7 +23,7 @@ const Root = styled(ReactSelect)`
       height: 44px;
       border: 1px solid ${colors.neutral};
       border-radius: 5px;
-      padding: 10px 20px;
+      padding: 10px;
 
       &:hover {
         border: 1px solid ${colors.neutral};

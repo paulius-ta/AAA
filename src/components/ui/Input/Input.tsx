@@ -33,7 +33,7 @@ const InputField = styled.input<{$showCurrency?: boolean}>`
     font-weight: normal;
     font-size: 16px;
     line-height: 125%;
-    padding: 10px 20px;
+    padding: 10px;
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
     text-overflow: ellipsis;
