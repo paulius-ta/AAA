@@ -1,5 +1,7 @@
 import styled, {css} from 'styled-components';
 import Input from '@components/ui/Input/Input.tsx';
+import PaymentMethodInput from '@components/Wizard/elements/PaymentMethodInput.tsx';
+import {paymentMethods} from '@data/dataPaymentDetailsForm.ts';
 
 const Root = styled.div`
   ${() => css`
@@ -12,8 +14,11 @@ const Root = styled.div`
 const PaymentDetailsForm = () => {
   return (
     <Root>
-      <Input />
-      <Input />
+      <PaymentMethodInput data={paymentMethods} />
+      <Input
+        label={'Card number:'}
+        placeholder={'1234 5678 0000 0000 0000 0000 0000'}
+      />
       <Input />
     </Root>
   );
