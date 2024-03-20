@@ -9,3 +9,5 @@ export type HistoryEntry = SchemaTypes['HistoryEntry'];
 export type Images = SchemaTypes['Images'];
 export type ImageUrl = SchemaTypes['ImageUrl'];
 export type PaymentMethods = SchemaTypes['PaymentMethods'];
+export type ContactDetails = SchemaTypes['ContactDetails'];
+export type PaymentDetails = SchemaTypes['PaymentDetails'];
