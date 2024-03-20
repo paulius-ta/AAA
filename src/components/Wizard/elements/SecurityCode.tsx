@@ -15,7 +15,7 @@ const Root = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
-    background: ${colors.background};
+    background: ${colors.light};
     padding: 10px;
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
@@ -41,7 +41,7 @@ const Checkbox = styled.input<{$variant: number; $placeholder: boolean}>`
     aspect-ratio: 1;
     border: 1px solid ${colors.neutral20};
     border-radius: 50%;
-    background: ${colors.background};
+    background: ${colors.light};
 
       ${
         $placeholder &&
@@ -55,13 +55,13 @@ const Checkbox = styled.input<{$variant: number; $placeholder: boolean}>`
             top: 0;
             left: 0;
             background: ${colors.neutral20};
-            box-shadow: inset 0 0 0 2px ${colors.background};
+            box-shadow: inset 0 0 0 2px ${colors.light};
           }
         `
       }
 
       &:checked {
-          box-shadow: inset 0 0 0 2px ${colors.background};
+          box-shadow: inset 0 0 0 2px ${colors.light};
 
           &:before {
               content: none;
