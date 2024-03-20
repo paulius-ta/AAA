@@ -12,6 +12,7 @@ const colors = {
   neutral20: 'rgba(223, 215, 199, 1)',
   timerBackground: 'rgba(255, 0, 153, 1)',
   timerText: 'rgba(5, 0, 255, 1)',
+  light: 'rgb(255,255,255,1)',
 };
 
 export default colors;
