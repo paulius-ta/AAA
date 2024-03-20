@@ -4,6 +4,7 @@ import PaymentDetailsForm from '@components/Wizard/elements/PaymentDetailsForm.t
 import Button from '@components/ui/Button/Button.tsx';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconPayment} from '@assets/AssetsProvider.ts';
+import usePaymentDetailsTransition from '@components/Wizard/transitions/usePaymentDetailsTransition.ts';
 
 const Root = styled(Box)`
   ${() => css`
@@ -26,11 +27,13 @@ const StyledIcon = styled(Icon)`
 `;
 
 const PaymentDetailsStep = () => {
+  const {handleTransition} = usePaymentDetailsTransition();
+
   return (
     <Root>
       <StyledIcon icon={iconPayment} />
       <PaymentDetailsForm />
-      <StyledButton onClick={() => {}}>Next</StyledButton>
+      <StyledButton onClick={handleTransition}>Next</StyledButton>
     </Root>
   );
 };
