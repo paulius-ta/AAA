@@ -48,6 +48,29 @@ export interface components {
       url: string;
       value: string;
     };
+    ContactDetails: {
+      name: string;
+      mailId: string;
+      /** Format: int64 */
+      phoneNumber: number;
+      coordinates: {
+        long?: components["schemas"]["Coordinate"];
+        lat?: components["schemas"]["Coordinate"];
+      };
+    };
+    Coordinate: {
+      prefix1?: string;
+      prefix2?: string;
+      prefix3?: string;
+      /** Format: float */
+      coordinate?: number;
+    };
+    PaymentDetails: {
+      paymentMethod: string;
+      /** Format: int64 */
+      cardNumber: number;
+      securityCode: unknown[];
+    };
   };
   responses: never;
   parameters: never;

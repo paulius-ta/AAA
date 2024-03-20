@@ -106,3 +106,51 @@ components:
           type: string
         value:
           type: string
+    ContactDetails:
+      type: object
+      required:
+        - name
+        - mailId
+        - phoneNumber
+        - coordinates
+      properties:
+        name:
+          type: string
+        mailId:
+          type: string
+        phoneNumber:
+          type: number
+          format: int64
+        coordinates:
+          type: object
+          properties:
+            long:
+              $ref: '#/components/schemas/Coordinate'
+            lat:
+              $ref: '#/components/schemas/Coordinate'
+    Coordinate:
+      type: object
+      properties:
+        prefix1:
+          type: string
+        prefix2:
+          type: string
+        prefix3:
+          type: string
+        coordinate:
+          type: number
+          format: float
+    PaymentDetails:
+      type: object
+      required:
+        - paymentMethod
+        - cardNumber
+        - securityCode
+      properties:
+        paymentMethod:
+          type: string
+        cardNumber:
+          type: number
+          format: int64
+        securityCode:
+          type: array
