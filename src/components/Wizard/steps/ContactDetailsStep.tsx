@@ -26,12 +26,12 @@ const StyledIcon = styled(Icon)`
   `};
 `;
 const ContactDetailsStep = () => {
-  const {handleTransition} = useContactDetailsTransition();
+  const {handleTransition, register} = useContactDetailsTransition();
 
   return (
     <Root>
       <StyledIcon icon={iconContact} />
-      <ContactDetailsForm />
+      <ContactDetailsForm register={register} />
       <StyledButton onClick={handleTransition}>Next</StyledButton>
     </Root>
   );

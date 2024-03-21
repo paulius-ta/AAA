@@ -3,6 +3,12 @@ import Label from '@components/ui/Label/Label.tsx';
 import Select from '@components/ui/Select/Select.tsx';
 import {locationCoordinateOptions} from '@data/dataContactDetailsForm.ts';
 import Input from '@components/ui/Input/Input.tsx';
+import {UseFormRegister} from 'react-hook-form';
+import {ContactDetails} from '@customTypes/model/apiTypes.ts';
+
+interface ComponentProps extends CustomComponent {
+  register: UseFormRegister<ContactDetails>;
+}
 
 const Root = styled.div`
   ${() => css`
@@ -28,7 +34,7 @@ const StyledSelect = styled(Select)`
   `};
 `;
 
-const LocationCoordinatesInput = () => {
+const LocationCoordinatesInput = ({register}: ComponentProps) => {
   return (
     <Root>
       <Label>cosmic phone number:</Label>
@@ -38,7 +44,11 @@ const LocationCoordinatesInput = () => {
           <StyledSelect options={locationCoordinateOptions} />
           <StyledSelect options={locationCoordinateOptions} />
         </Wrapper>
-        <Input placeholder={'51.513373'} />
+        <Input
+          placeholder={'51.513373'}
+          register={register}
+          name={'coordinates.lat.coordinate'}
+        />
       </Wrapper>
       <Wrapper>
         <Wrapper>
@@ -46,7 +56,11 @@ const LocationCoordinatesInput = () => {
           <StyledSelect options={locationCoordinateOptions} />
           <StyledSelect options={locationCoordinateOptions} />
         </Wrapper>
-        <Input placeholder={'-3.175622'} />
+        <Input
+          placeholder={'-3.175622'}
+          register={register}
+          name={'coordinates.long.coordinate'}
+        />
       </Wrapper>
     </Root>
   );

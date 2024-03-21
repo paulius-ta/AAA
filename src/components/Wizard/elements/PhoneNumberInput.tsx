@@ -3,6 +3,11 @@ import Label from '@components/ui/Label/Label.tsx';
 import {phoneNumberOptions} from '@data/dataContactDetailsForm.ts';
 import Input from '@components/ui/Input/Input.tsx';
 import Select from '@components/ui/Select/Select.tsx';
+import {UseFormRegister} from 'react-hook-form';
+import {ContactDetails} from '@customTypes/model/apiTypes.ts';
+interface ComponentProps extends CustomComponent {
+  register: UseFormRegister<ContactDetails>;
+}
 
 const Root = styled.div`
   ${() => css`
@@ -20,12 +25,16 @@ const StyledSelect = styled(Select)`
   `};
 `;
 
-const PhoneNumberInput = () => {
+const PhoneNumberInput = ({register}: ComponentProps) => {
   return (
     <Root>
       <Label>cosmic phone number:</Label>
       <StyledSelect options={phoneNumberOptions} />
-      <Input placeholder={'006234523486'} />
+      <Input
+        placeholder={'006234523486'}
+        register={register}
+        name={'phoneNumber.number'}
+      />
     </Root>
   );
 };
