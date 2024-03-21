@@ -51,8 +51,11 @@ export interface components {
     ContactDetails: {
       name: string;
       mailId: string;
-      /** Format: int64 */
-      phoneNumber: number;
+      phoneNumber: {
+        prefix: string;
+        /** Format: int64 */
+        number: number | null;
+      };
       coordinates: {
         long?: components["schemas"]["Coordinate"];
         lat?: components["schemas"]["Coordinate"];
@@ -64,11 +67,11 @@ export interface components {
       prefix3?: string;
       /** Format: float */
       coordinate?: number;
-    };
+    } | null;
     PaymentDetails: {
       paymentMethod: string;
       /** Format: int64 */
-      cardNumber: number;
+      cardNumber: number | null;
       securityCode: unknown[];
     };
   };
