@@ -5,8 +5,8 @@ import ErrorText from '@components/ui/Error/ErrorText.tsx';
 import colors from '@styles/colors.ts';
 
 interface ComponentProps<T extends FieldValues> extends CustomComponent {
-  register?: UseFormRegister<T>;
-  name?: Path<T>;
+  register: UseFormRegister<T>;
+  name: Path<T>;
   label?: string;
   error?: string;
   placeholder?: string;
@@ -72,6 +72,8 @@ const Currency = styled.span`
 `;
 
 const Input = <T extends FieldValues>({
+  name,
+  register,
   label,
   error,
   placeholder,
@@ -81,7 +83,12 @@ const Input = <T extends FieldValues>({
     <Root $hasLabel={!!label}>
       {label && <Label>{label}</Label>}
       <InputFieldWrapper>
-        <InputField placeholder={placeholder} $showCurrency={showCurrency} />
+        <InputField
+          id={name}
+          placeholder={placeholder}
+          $showCurrency={showCurrency}
+          {...register(name)}
+        />
         {showCurrency && <Currency>eur</Currency>}
       </InputFieldWrapper>
       {error && <ErrorText>{error}</ErrorText>}
