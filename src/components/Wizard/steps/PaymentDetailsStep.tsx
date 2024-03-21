@@ -27,12 +27,12 @@ const StyledIcon = styled(Icon)`
 `;
 
 const PaymentDetailsStep = () => {
-  const {handleTransition} = usePaymentDetailsTransition();
+  const {handleTransition, register} = usePaymentDetailsTransition();
 
   return (
     <Root>
       <StyledIcon icon={iconPayment} />
-      <PaymentDetailsForm />
+      <PaymentDetailsForm register={register} />
       <StyledButton onClick={handleTransition}>Next</StyledButton>
     </Root>
   );

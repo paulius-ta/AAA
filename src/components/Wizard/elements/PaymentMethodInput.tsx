@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import {PaymentMethods} from '@customTypes/model/apiTypes.ts';
 import Label from '@components/ui/Label/Label.tsx';
+import {useStore} from '@stores/store.ts';
+import {observer} from 'mobx-react-lite';
+import {ChangeEvent} from 'react';
 
 interface ComponentProps extends CustomComponent {
   data: PaymentMethods;
@@ -43,7 +46,13 @@ const Method = styled.label`
   }
 `;
 
-const PaymentMethodInput = ({data}: ComponentProps) => {
+const PaymentMethodInput = observer(({data}: ComponentProps) => {
+  const {wizardStore} = useStore();
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    wizardStore.setPaymentMethod(e.target.value);
+  };
+
   return (
     <Root>
       <Label>Payment method:</Label>
@@ -54,13 +63,13 @@ const PaymentMethodInput = ({data}: ComponentProps) => {
             name={'payment-method'}
             value={method.value}
             id={`payment-method-${index}`}
-            onChange={e => console.log(e.target.value)}
+            onChange={handleOnChange}
           />
           <img src={method.url} alt={method.value} />
         </Method>
       ))}
     </Root>
   );
-};
+});
 
 export default PaymentMethodInput;
