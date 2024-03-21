@@ -102,11 +102,12 @@ const SecurityCode = ({variant}: ComponentProps) => {
 
   return (
     <Root>
-      {dataSecurityCodeSingle.map(row => {
+      {dataSecurityCodeSingle.map((row, index) => {
         return (
-          <Row>
-            {row.map(() => (
+          <Row key={`security-row-${index}`}>
+            {row.map((_, index) => (
               <Checkbox
+                key={`security-checkbox-${index}`}
                 type={'checkbox'}
                 $variant={variant}
                 $placeholder={getRandomPlaceholder() && isPlaceholderVisible}
