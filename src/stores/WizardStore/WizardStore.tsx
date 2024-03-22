@@ -4,7 +4,9 @@ import {ContactDetails, PaymentDetails} from '@customTypes/model/apiTypes.ts';
 class WizardStore {
   INITIAL_STEP = 0;
 
-  @observable accessor step = this.INITIAL_STEP;
+  @observable accessor step: number = this.INITIAL_STEP;
+
+  @observable accessor bidAmount: Nullable<number> = null;
 
   @observable accessor contactDetails: ContactDetails = {
     name: '',
@@ -27,6 +29,10 @@ class WizardStore {
 
   @action setStep(step: number) {
     this.step = step;
+  }
+
+  @action setBidAmount(amount: number) {
+    this.bidAmount = amount;
   }
 
   @action setPaymentMethod(method: string) {
