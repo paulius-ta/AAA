@@ -1,9 +1,16 @@
-const usePreviewTransition = () => {
-  const handleTransition = () => {
-    console.log('bid is successful');
-  };
+import {useForm} from 'react-hook-form';
+import {useStore} from '@stores/store.ts';
 
-  return {handleTransition};
+const usePreviewTransition = () => {
+  const {wizardStore} = useStore();
+  const {register, handleSubmit} = useForm<{bidAmount: number}>();
+
+  const handleTransition = handleSubmit(data => {
+    wizardStore.setBidAmount(data.bidAmount);
+    console.log('bid is successful');
+  });
+
+  return {handleTransition, register};
 };
 
 export default usePreviewTransition;

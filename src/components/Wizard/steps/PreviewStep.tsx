@@ -6,6 +6,7 @@ import Button from '@components/ui/Button/Button.tsx';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconPreview} from '@assets/AssetsProvider.ts';
 import Input from '@components/ui/Input/Input.tsx';
+import usePreviewTransition from '@components/Wizard/transitions/usePreviewTransition.ts';
 
 const Root = styled(Box)`
   ${() => css`
@@ -35,15 +36,15 @@ const BottomContainer = styled.div`
 `;
 
 const PreviewStep = () => {
+  const {handleTransition, register} = usePreviewTransition();
   return (
     <Root>
       <StyledIcon icon={iconPreview} />
       <ContactDetailsBox />
       <PaymentDetailsBox />
-
       <BottomContainer>
-        <Input />
-        <StyledButton w100 onClick={() => {}}>
+        <Input register={register} name={'bidAmount'} />
+        <StyledButton w100 onClick={handleTransition}>
           Make a bid
         </StyledButton>
       </BottomContainer>
