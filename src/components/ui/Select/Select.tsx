@@ -3,9 +3,13 @@ import styled, {css} from 'styled-components';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconSelectArrow} from '@assets/AssetsProvider.ts';
 import colors from '@styles/colors.ts';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import {SingleValue} from 'react-select/dist/declarations/src/types';
 
 interface ComponentProps extends CustomComponent {
   options: SelectOption[];
+  onChange?: (value: string | number) => void;
 }
 
 const Root = styled(ReactSelect)`
@@ -80,12 +84,18 @@ const Root = styled(ReactSelect)`
   `};
 `;
 
-const Select = ({className, options}: ComponentProps) => {
+const Select = ({className, options, onChange}: ComponentProps) => {
   const DropdownIndicator = ({...props}: DropdownIndicatorProps) => (
     <components.DropdownIndicator {...props}>
       <Icon icon={iconSelectArrow} size={10} />
     </components.DropdownIndicator>
   );
+
+  const handleChange = (option: SingleValue) => {
+    if (!onChange) return;
+
+    onChange(option.value);
+  };
 
   return (
     <Root
@@ -95,6 +105,7 @@ const Select = ({className, options}: ComponentProps) => {
       classNamePrefix={'select'}
       options={options}
       components={{DropdownIndicator}}
+      onChange={option => handleChange(option)}
     />
   );
 };
