@@ -132,14 +132,21 @@ components:
               format: int64
         coordinates:
           type: object
+          required:
+            - lat
+            - long
           properties:
-            long:
-              $ref: '#/components/schemas/Coordinate'
             lat:
+              $ref: '#/components/schemas/Coordinate'
+            long:
               $ref: '#/components/schemas/Coordinate'
     Coordinate:
       type: object
-      nullable: true
+      required:
+        - prefix1
+        - prefix2
+        - prefix3
+        - coordinate
       properties:
         prefix1:
           type: string
@@ -150,6 +157,7 @@ components:
         coordinate:
           type: number
           format: float
+          nullable: true
     PaymentDetails:
       type: object
       required:

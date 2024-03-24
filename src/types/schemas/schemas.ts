@@ -57,17 +57,17 @@ export interface components {
         number: number | null;
       };
       coordinates: {
-        long?: components["schemas"]["Coordinate"];
-        lat?: components["schemas"]["Coordinate"];
+        lat: components["schemas"]["Coordinate"];
+        long: components["schemas"]["Coordinate"];
       };
     };
     Coordinate: {
-      prefix1?: string;
-      prefix2?: string;
-      prefix3?: string;
+      prefix1: string;
+      prefix2: string;
+      prefix3: string;
       /** Format: float */
-      coordinate?: number;
-    } | null;
+      coordinate: number | null;
+    };
     PaymentDetails: {
       paymentMethod: string;
       /** Format: int64 */
