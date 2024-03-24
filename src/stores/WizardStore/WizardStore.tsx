@@ -16,8 +16,18 @@ class WizardStore {
     },
     mailId: '',
     coordinates: {
-      lat: null,
-      long: null,
+      lat: {
+        prefix1: '',
+        prefix2: '',
+        prefix3: '',
+        coordinate: null,
+      },
+      long: {
+        prefix1: '',
+        prefix2: '',
+        prefix3: '',
+        coordinate: null,
+      },
     },
   };
 
@@ -37,6 +47,10 @@ class WizardStore {
 
   @action setPaymentMethod(method: string) {
     this.paymentDetails.paymentMethod = method;
+  }
+
+  @action setPhoneNumberPrefix(prefix: string) {
+    this.contactDetails.phoneNumber.prefix = prefix;
   }
 
   @action updateContactDetails(details: ContactDetails) {
