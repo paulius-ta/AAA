@@ -3,10 +3,11 @@ import Label from '@components/ui/Label/Label.tsx';
 import {phoneNumberOptions} from '@data/dataContactDetailsForm.ts';
 import Input from '@components/ui/Input/Input.tsx';
 import Select from '@components/ui/Select/Select.tsx';
-import {UseFormRegister} from 'react-hook-form';
+import {UseFormRegister, Control} from 'react-hook-form';
 import {ContactDetails} from '@customTypes/model/apiTypes.ts';
 interface ComponentProps extends CustomComponent {
   register: UseFormRegister<ContactDetails>;
+  control: Control<ContactDetails>;
 }
 
 const Root = styled.div`
@@ -18,18 +19,16 @@ const Root = styled.div`
   `};
 `;
 
-const StyledSelect = styled(Select)`
-  ${() => css`
-    width: 200px;
-    flex-shrink: 0;
-  `};
-`;
-
-const PhoneNumberInput = ({register}: ComponentProps) => {
+const PhoneNumberInput = ({register, control}: ComponentProps) => {
   return (
     <Root>
       <Label>cosmic phone number:</Label>
-      <StyledSelect options={phoneNumberOptions} />
+      <Select
+        width={200}
+        options={phoneNumberOptions}
+        control={control}
+        name={'phoneNumber.prefix'}
+      />
       <Input
         placeholder={'006234523486'}
         register={register}

@@ -3,11 +3,12 @@ import Label from '@components/ui/Label/Label.tsx';
 import Select from '@components/ui/Select/Select.tsx';
 import {locationCoordinateOptions} from '@data/dataContactDetailsForm.ts';
 import Input from '@components/ui/Input/Input.tsx';
-import {UseFormRegister} from 'react-hook-form';
+import {Control, UseFormRegister} from 'react-hook-form';
 import {ContactDetails} from '@customTypes/model/apiTypes.ts';
 
 interface ComponentProps extends CustomComponent {
   register: UseFormRegister<ContactDetails>;
+  control: Control<ContactDetails>;
 }
 
 const Root = styled.div`
@@ -20,48 +21,79 @@ const Root = styled.div`
   `};
 `;
 
-const Wrapper = styled.div`
+const CoordinateContainer = styled.div`
+  ${() => css`
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  `};
+`;
+
+const SelectContainer = styled.div`
   ${() => css`
     display: flex;
     gap: 10px;
   `};
 `;
 
-const StyledSelect = styled(Select)`
-  ${() => css`
-    width: 100px;
-    flex-shrink: 0;
-  `};
-`;
-
-const LocationCoordinatesInput = ({register}: ComponentProps) => {
+const LocationCoordinatesInput = ({register, control}: ComponentProps) => {
   return (
     <Root>
       <Label>cosmic phone number:</Label>
-      <Wrapper>
-        <Wrapper>
-          <StyledSelect options={locationCoordinateOptions} />
-          <StyledSelect options={locationCoordinateOptions} />
-          <StyledSelect options={locationCoordinateOptions} />
-        </Wrapper>
+      <CoordinateContainer>
+        <SelectContainer>
+          <Select
+            width={80}
+            options={locationCoordinateOptions}
+            control={control}
+            name={'coordinates.lat.prefix1'}
+          />
+          <Select
+            width={80}
+            options={locationCoordinateOptions}
+            control={control}
+            name={'coordinates.lat.prefix2'}
+          />
+          <Select
+            width={80}
+            options={locationCoordinateOptions}
+            control={control}
+            name={'coordinates.lat.prefix3'}
+          />
+        </SelectContainer>
         <Input
           placeholder={'51.513373'}
           register={register}
           name={'coordinates.lat.coordinate'}
         />
-      </Wrapper>
-      <Wrapper>
-        <Wrapper>
-          <StyledSelect options={locationCoordinateOptions} />
-          <StyledSelect options={locationCoordinateOptions} />
-          <StyledSelect options={locationCoordinateOptions} />
-        </Wrapper>
+      </CoordinateContainer>
+      <CoordinateContainer>
+        <SelectContainer>
+          <Select
+            width={80}
+            options={locationCoordinateOptions}
+            control={control}
+            name={'coordinates.long.prefix1'}
+          />
+          <Select
+            width={80}
+            options={locationCoordinateOptions}
+            control={control}
+            name={'coordinates.long.prefix2'}
+          />
+          <Select
+            width={80}
+            options={locationCoordinateOptions}
+            control={control}
+            name={'coordinates.long.prefix3'}
+          />
+        </SelectContainer>
         <Input
           placeholder={'-3.175622'}
           register={register}
           name={'coordinates.long.coordinate'}
         />
-      </Wrapper>
+      </CoordinateContainer>
     </Root>
   );
 };

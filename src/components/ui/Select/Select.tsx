@@ -1,26 +1,32 @@
 import ReactSelect, {components, DropdownIndicatorProps} from 'react-select';
-import styled, {css} from 'styled-components';
+import {Control, Controller, FieldValues, Path} from 'react-hook-form';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconSelectArrow} from '@assets/AssetsProvider.ts';
+import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import {SingleValue} from 'react-select/dist/declarations/src/types';
 
-interface ComponentProps extends CustomComponent {
+interface ComponentProps<T extends FieldValues> extends CustomComponent {
   options: SelectOption[];
-  onChange?: (value: string | number) => void;
+  control: Control<T>;
+  name: Path<T>;
+  width?: number;
 }
 
-const Root = styled(ReactSelect)`
-  ${() => css`
+const SelectWrapper = styled.div<{$width?: number}>`
+  ${({$width}) => css`
     width: 100%;
+    flex-shrink: 0;
     font-family: 'galactico', sans-serif;
     font-weight: normal;
     letter-spacing: 5px;
     font-size: 15px;
     line-height: 125%;
     text-align: center;
+
+    ${$width &&
+    css`
+      width: ${$width}px;
+    `}
 
     .select__control {
       position: relative;
@@ -84,28 +90,39 @@ const Root = styled(ReactSelect)`
   `};
 `;
 
-const Select = ({className, options, onChange}: ComponentProps) => {
-  const DropdownIndicator = ({...props}: DropdownIndicatorProps) => (
+const Select = <T extends FieldValues>({
+  options,
+  control,
+  name,
+  width,
+}: ComponentProps<T>) => {
+  const DropdownIndicator = (props: DropdownIndicatorProps<SelectOption>) => (
     <components.DropdownIndicator {...props}>
       <Icon icon={iconSelectArrow} size={10} />
     </components.DropdownIndicator>
   );
 
-  const handleChange = (option: SingleValue) => {
-    if (!onChange) return;
-
-    onChange(option.value);
-  };
-
   return (
-    <Root
-      placeholder={false}
-      isSearchable={false}
-      className={className}
-      classNamePrefix={'select'}
-      options={options}
-      components={{DropdownIndicator}}
-      onChange={option => handleChange(option)}
+    <Controller
+      name={name}
+      control={control}
+      render={({field: {value, onChange, ...rest}}) => (
+        <SelectWrapper $width={width}>
+          <ReactSelect
+            {...rest}
+            options={options}
+            isMulti={false}
+            placeholder={false}
+            isSearchable={false}
+            classNamePrefix={'select'}
+            components={{DropdownIndicator}}
+            value={value ? options.find(opt => opt.value === value) : null}
+            onChange={(option: Nullable<SelectOption>) => {
+              onChange(option?.value);
+            }}
+          />
+        </SelectWrapper>
+      )}
     />
   );
 };

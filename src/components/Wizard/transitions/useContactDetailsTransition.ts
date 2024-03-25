@@ -4,13 +4,15 @@ import {ContactDetails} from '@customTypes/model/apiTypes.ts';
 
 const useContactDetailsTransition = () => {
   const {wizardStore} = useStore();
-  const {register, handleSubmit} = useForm<ContactDetails>();
+  const {register, control, handleSubmit} = useForm<ContactDetails>();
 
   const handleTransition = handleSubmit(data => {
     wizardStore.updateContactDetails(data);
+    console.log(data);
+    wizardStore.setStep(1);
   });
 
-  return {handleTransition, register};
+  return {handleTransition, register, control};
 };
 
 export default useContactDetailsTransition;

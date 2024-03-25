@@ -1,11 +1,12 @@
 import styled, {css} from 'styled-components';
 import Input from '@components/ui/Input/Input.tsx';
-import PhoneNumberInput from '@components/Wizard/elements/PhoneNumberInput.tsx';
 import LocationCoordinatesInput from '@components/Wizard/elements/LocationCoordinatesInput.tsx';
-import {UseFormRegister} from 'react-hook-form';
+import {Control, UseFormRegister} from 'react-hook-form';
 import {ContactDetails} from '@customTypes/model/apiTypes.ts';
+import PhoneNumberInput from '@components/Wizard/elements/PhoneNumberInput.tsx';
 interface ComponentProps extends CustomComponent {
   register: UseFormRegister<ContactDetails>;
+  control: Control<ContactDetails>;
 }
 
 const Root = styled.div`
@@ -16,7 +17,7 @@ const Root = styled.div`
   `};
 `;
 
-const ContactDetailsForm = ({register}: ComponentProps) => {
+const ContactDetailsForm = ({register, control}: ComponentProps) => {
   return (
     <Root>
       <Input
@@ -31,8 +32,8 @@ const ContactDetailsForm = ({register}: ComponentProps) => {
         register={register}
         name={'mailId'}
       />
-      <PhoneNumberInput register={register} />
-      <LocationCoordinatesInput register={register} />
+      <PhoneNumberInput register={register} control={control} />
+      <LocationCoordinatesInput register={register} control={control} />
     </Root>
   );
 };
