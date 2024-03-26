@@ -34,7 +34,6 @@ class WizardStore {
   @observable accessor paymentDetails: PaymentDetails = {
     paymentMethod: '',
     cardNumber: null,
-    securityCode: [],
   };
 
   @action setStep(step: number) {
@@ -47,10 +46,6 @@ class WizardStore {
 
   @action setPaymentMethod(method: string) {
     this.paymentDetails.paymentMethod = method;
-  }
-
-  @action setPhoneNumberPrefix(prefix: string) {
-    this.contactDetails.phoneNumber.prefix = prefix;
   }
 
   @action updateContactDetails(details: ContactDetails) {
