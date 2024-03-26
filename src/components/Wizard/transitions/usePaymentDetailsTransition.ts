@@ -2,6 +2,7 @@ import {useStore} from '@stores/store.ts';
 import {useForm} from 'react-hook-form';
 import {PaymentDetails} from '@customTypes/model/apiTypes.ts';
 import {reaction} from 'mobx';
+import {useEffect} from 'react';
 
 const usePaymentDetailsTransition = () => {
   const {wizardStore} = useStore();
@@ -9,14 +10,19 @@ const usePaymentDetailsTransition = () => {
 
   const handleTransition = handleSubmit(data => {
     wizardStore.updatePaymentDetails(data);
+    wizardStore.setStep(2);
   });
 
-  reaction(
-    () => wizardStore.paymentDetails.paymentMethod,
-    paymentMethod => {
-      setValue('paymentMethod', paymentMethod);
-    }
-  );
+  useEffect(() => {
+    const disposer = reaction(
+      () => wizardStore.paymentDetails.paymentMethod,
+      paymentMethod => {
+        setValue('paymentMethod', paymentMethod);
+      }
+    );
+
+    return () => disposer();
+  }, []);
 
   return {handleTransition, register, setValue};
 };
