@@ -163,7 +163,6 @@ components:
       required:
         - paymentMethod
         - cardNumber
-        - securityCode
       properties:
         paymentMethod:
           type: string
@@ -171,5 +170,3 @@ components:
           type: number
           format: int64
           nullable: true
-        securityCode:
-          type: array

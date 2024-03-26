@@ -72,7 +72,6 @@ export interface components {
       paymentMethod: string;
       /** Format: int64 */
       cardNumber: number | null;
-      securityCode: unknown[];
     };
   };
   responses: never;
