@@ -10,7 +10,12 @@ const usePreviewTransition = () => {
     console.log('bid is successful');
   });
 
-  return {handleTransition, register};
+  return {
+    handleTransition,
+    register,
+    contactDetails: wizardStore.contactDetails,
+    paymentDetails: wizardStore.paymentDetails,
+  };
 };
 
 export default usePreviewTransition;

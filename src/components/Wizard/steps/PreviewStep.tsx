@@ -7,6 +7,8 @@ import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconPreview} from '@assets/AssetsProvider.ts';
 import Input from '@components/ui/Input/Input.tsx';
 import usePreviewTransition from '@components/Wizard/transitions/usePreviewTransition.ts';
+import {dataHistory} from '@data/dataHistory.ts';
+import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
 
 const Root = styled(Box)`
   ${() => css`
@@ -19,7 +21,6 @@ const Root = styled(Box)`
 const StyledButton = styled(Button)`
   ${() => css`
     align-self: flex-end;
-    margin-top: 10px;
   `};
 `;
 
@@ -32,21 +33,27 @@ const StyledIcon = styled(Icon)`
 const BottomContainer = styled.div`
   ${() => css`
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   `};
 `;
 
 const PreviewStep = () => {
-  const {handleTransition, register} = usePreviewTransition();
+  const {handleTransition, register, contactDetails, paymentDetails} =
+    usePreviewTransition();
+
   return (
     <Root>
       <StyledIcon icon={iconPreview} />
-      <ContactDetailsBox />
-      <PaymentDetailsBox />
+      <ContactDetailsBox data={contactDetails} />
+      <PaymentDetailsBox data={paymentDetails} />
       <BottomContainer>
         <Input register={register} name={'bidAmount'} />
         <StyledButton w100 onClick={handleTransition}>
           Make a bid
         </StyledButton>
+        <HistoryBox data={dataHistory} secondary isAutoCollapsed />
       </BottomContainer>
     </Root>
   );
