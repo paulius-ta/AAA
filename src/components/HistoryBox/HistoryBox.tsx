@@ -9,6 +9,8 @@ import {useState} from 'react';
 
 interface ComponentProps extends CustomComponent {
   data: History;
+  secondary?: boolean;
+  isAutoCollapsed?: boolean;
 }
 
 const Root = styled(Box)``;
@@ -45,7 +47,16 @@ const RowItem = styled.div`
   `};
 `;
 
-const IndexText = styled(Text)`
+const ExtendedText = styled(Text)<{secondary?: boolean}>`
+  ${({secondary}) => css`
+    ${secondary &&
+    css`
+      background: ${colors.boxBackground};
+    `}
+  `};
+`;
+
+const IndexText = styled(ExtendedText)`
   ${() => css`
     width: fit-content;
     min-width: 30px;
@@ -53,13 +64,13 @@ const IndexText = styled(Text)`
   `};
 `;
 
-const DateText = styled(Text)`
+const DateText = styled(ExtendedText)`
   ${() => css`
     text-align: start;
   `};
 `;
 
-const AmountText = styled(Text)`
+const AmountText = styled(ExtendedText)`
   ${() => css`
     width: 100%;
     text-align: end;
@@ -77,7 +88,7 @@ const Currency = styled.span`
   `};
 `;
 
-const HistoryBox = ({data}: ComponentProps) => {
+const HistoryBox = ({data, secondary, isAutoCollapsed}: ComponentProps) => {
   const [limit, setLimit] = useState(Math.min(data.entries.length, 3));
   const [showAll, setShowAll] = useState(data.entries.length > limit);
 
@@ -87,19 +98,21 @@ const HistoryBox = ({data}: ComponentProps) => {
   };
 
   return (
-    <Root>
-      <Accordion icon={iconHistory}>
+    <Root secondary={secondary}>
+      <Accordion icon={iconHistory} isAutoCollapsed={isAutoCollapsed}>
         {data.entries.slice(0, limit).map((entry, index) => {
           return (
             <Row key={index}>
               <RowItem>
-                <IndexText boxed>{index + 1}</IndexText>
+                <IndexText boxed secondary>
+                  {index + 1}
+                </IndexText>
               </RowItem>
               <RowItem>
                 <DateText>{entry.date}</DateText>
               </RowItem>
               <RowItem>
-                <AmountText boxed>
+                <AmountText boxed secondary>
                   {entry.amount} <Currency>eur</Currency>
                 </AmountText>
               </RowItem>
