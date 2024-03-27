@@ -23,7 +23,7 @@ const WizardNavigator = observer(() => {
           <NavigatorItem
             onClick={() => handleClick(step.id)}
             key={`${step.id}-step`}
-            index={step.id + 1}
+            icon={step.icon}
             active={step.id === activeStep}
             disabled={false}
           />

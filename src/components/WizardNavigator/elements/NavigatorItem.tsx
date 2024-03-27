@@ -1,7 +1,9 @@
 import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
+import {FunctionComponent} from 'react';
+import Icon from '@components/ui/Icon/Icon.tsx';
 interface ComponentProps extends CustomComponent {
-  index: number;
+  icon: FunctionComponent;
   active: boolean;
   disabled: boolean;
   onClick: () => void;
@@ -62,11 +64,11 @@ const Index = styled.div<{$active: boolean; $disabled: boolean}>`
   `};
 `;
 
-const NavigatorItem = ({onClick, index, active, disabled}: ComponentProps) => {
+const NavigatorItem = ({onClick, icon, active, disabled}: ComponentProps) => {
   return (
     <Root>
       <Index onClick={onClick} $active={active} $disabled={disabled}>
-        {index}
+        <Icon icon={icon} size={20} />
       </Index>
     </Root>
   );
