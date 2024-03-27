@@ -6,6 +6,7 @@ import {FunctionComponent, ReactNode} from 'react';
 interface ComponentProps extends CustomComponent {
   children: ReactNode;
   icon: FunctionComponent<SimpleObject>;
+  isAutoCollapsed?: boolean;
 }
 
 const Root = styled.div``;
@@ -50,8 +51,8 @@ const StyledIcon = styled(Icon)<{$isOpen: boolean}>`
   `};
 `;
 
-const Accordion = ({children, icon}: ComponentProps) => {
-  const {isOpen, onClick} = useExtendableContent();
+const Accordion = ({children, icon, isAutoCollapsed}: ComponentProps) => {
+  const {isOpen, onClick} = useExtendableContent(isAutoCollapsed);
   return (
     <Root>
       <TopContainer>

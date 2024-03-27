@@ -1,7 +1,9 @@
 import {useState} from 'react';
 
-const useExtendableContent = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const useExtendableContent = (isAutoCollapsed = false) => {
+  const [isOpen, setIsOpen] = useState(
+    isAutoCollapsed ? !isAutoCollapsed : true
+  );
 
   const onClick = () => {
     setIsOpen(prev => !prev);
