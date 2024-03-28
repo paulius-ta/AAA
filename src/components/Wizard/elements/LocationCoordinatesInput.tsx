@@ -3,12 +3,13 @@ import Label from '@components/ui/Label/Label.tsx';
 import Select from '@components/ui/Select/Select.tsx';
 import {locationCoordinateOptions} from '@data/dataContactDetailsForm.ts';
 import Input from '@components/ui/Input/Input.tsx';
-import {Control, UseFormRegister} from 'react-hook-form';
+import {Control, FieldErrors, UseFormRegister} from 'react-hook-form';
 import {ContactDetails} from '@customTypes/model/apiTypes.ts';
 
 interface ComponentProps extends CustomComponent {
   register: UseFormRegister<ContactDetails>;
   control: Control<ContactDetails>;
+  errors: FieldErrors<ContactDetails>;
 }
 
 const Root = styled.div`
@@ -36,7 +37,11 @@ const SelectContainer = styled.div`
   `};
 `;
 
-const LocationCoordinatesInput = ({register, control}: ComponentProps) => {
+const LocationCoordinatesInput = ({
+  register,
+  control,
+  errors,
+}: ComponentProps) => {
   return (
     <Root>
       <Label>cosmic phone number:</Label>
@@ -47,24 +52,28 @@ const LocationCoordinatesInput = ({register, control}: ComponentProps) => {
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.lat.prefix1'}
+            error={errors.coordinates?.lat?.prefix1?.message}
           />
           <Select
             width={80}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.lat.prefix2'}
+            error={errors.coordinates?.lat?.prefix2?.message}
           />
           <Select
             width={80}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.lat.prefix3'}
+            error={errors.coordinates?.lat?.prefix3?.message}
           />
         </SelectContainer>
         <Input
           placeholder={'51.513373'}
           register={register}
           name={'coordinates.lat.coordinate'}
+          error={errors.coordinates?.lat?.coordinate?.message}
         />
       </CoordinateContainer>
       <CoordinateContainer>
@@ -74,24 +83,28 @@ const LocationCoordinatesInput = ({register, control}: ComponentProps) => {
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.long.prefix1'}
+            error={errors.coordinates?.long?.prefix1?.message}
           />
           <Select
             width={80}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.long.prefix2'}
+            error={errors.coordinates?.long?.prefix2?.message}
           />
           <Select
             width={80}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.long.prefix3'}
+            error={errors.coordinates?.long?.prefix3?.message}
           />
         </SelectContainer>
         <Input
           placeholder={'-3.175622'}
           register={register}
           name={'coordinates.long.coordinate'}
+          error={errors.coordinates?.long?.coordinate?.message}
         />
       </CoordinateContainer>
     </Root>
