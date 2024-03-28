@@ -3,16 +3,19 @@ import {Control, Controller, FieldValues, Path} from 'react-hook-form';
 import styled, {css} from 'styled-components';
 import reactSelect from '@styles/reactSelect.ts';
 import useSelect from '@hooks/useSelect.tsx';
+import colors from '@styles/colors.ts';
 
 interface ComponentProps<T extends FieldValues> extends CustomComponent {
   options: SelectOption[];
   control: Control<T>;
   name: Path<T>;
   width?: number;
+  error?: string;
 }
 
-const Root = styled.div<{$width?: number}>`
-  ${({$width}) => css`
+const Root = styled.div<{$width?: number; $error: boolean}>`
+  ${reactSelect}
+  ${({$width, $error}) => css`
     width: 100%;
     flex-shrink: 0;
     font-family: 'galactico', sans-serif;
@@ -27,7 +30,20 @@ const Root = styled.div<{$width?: number}>`
       width: ${$width}px;
     `}
 
-    ${reactSelect}
+    ${$error &&
+    css`
+      .select__control {
+        border: 1px solid ${colors.error};
+
+        &:hover {
+          border: 1px solid ${colors.error};
+        }
+      }
+
+      .select__dropdown-indicator {
+        color: ${colors.error};
+      }
+    `}
   `};
 `;
 
@@ -36,11 +52,12 @@ const Select = <T extends FieldValues>({
   control,
   name,
   width,
+  error,
 }: ComponentProps<T>) => {
   const {config} = useSelect(options);
 
   return (
-    <Root $width={width}>
+    <Root $width={width} $error={!!error}>
       <Controller
         name={name}
         control={control}
