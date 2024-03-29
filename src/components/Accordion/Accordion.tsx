@@ -21,6 +21,7 @@ const TopContainer = styled.div`
 
 const BottomContainer = styled.div<{$isOpen: boolean}>`
   ${({$isOpen}) => css`
+    min-height: ${$isOpen ? 'auto' : '0px'};
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -61,7 +62,7 @@ const Accordion = ({children, icon, isAutoCollapsed}: ComponentProps) => {
           <StyledIcon icon={iconChevronDown} $isOpen={isOpen} />
         </IconWrapper>
       </TopContainer>
-      {isOpen && <BottomContainer $isOpen={isOpen}>{children}</BottomContainer>}
+      <BottomContainer $isOpen={isOpen}>{children}</BottomContainer>
     </Root>
   );
 };
