@@ -104,7 +104,7 @@ const HistoryBox = ({data, secondary, isAutoCollapsed}: ComponentProps) => {
           return (
             <Row key={index}>
               <RowItem>
-                <IndexText boxed secondary>
+                <IndexText boxed secondary={secondary}>
                   {index + 1}
                 </IndexText>
               </RowItem>
@@ -112,7 +112,7 @@ const HistoryBox = ({data, secondary, isAutoCollapsed}: ComponentProps) => {
                 <DateText>{entry.date}</DateText>
               </RowItem>
               <RowItem>
-                <AmountText boxed secondary>
+                <AmountText boxed secondary={secondary}>
                   {entry.amount} <Currency>eur</Currency>
                 </AmountText>
               </RowItem>
