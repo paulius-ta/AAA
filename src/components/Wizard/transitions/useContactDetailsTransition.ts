@@ -36,6 +36,7 @@ const useContactDetailsTransition = () => {
     formState: {errors},
   } = useForm<ContactDetails>({
     resolver: yupResolver(contactDetailsSchema),
+    shouldFocusError: false,
   });
 
   const handleTransition = handleSubmit(data => {
