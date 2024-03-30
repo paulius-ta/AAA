@@ -3,10 +3,12 @@ import Input from '@components/ui/Input/Input.tsx';
 import PaymentMethodInput from '@components/Wizard/elements/PaymentMethodInput.tsx';
 import {paymentMethods} from '@data/dataPaymentDetailsForm.ts';
 import SecurityCodeInput from '@components/Wizard/elements/SecurityCodeInput.tsx';
-import {UseFormRegister} from 'react-hook-form';
+import {FieldErrors, UseFormRegister} from 'react-hook-form';
 import {PaymentDetails} from '@customTypes/model/apiTypes.ts';
+
 interface ComponentProps extends CustomComponent {
   register: UseFormRegister<PaymentDetails>;
+  errors: FieldErrors<PaymentDetails>;
 }
 
 const Root = styled.div`
@@ -17,15 +19,19 @@ const Root = styled.div`
   `};
 `;
 
-const PaymentDetailsForm = ({register}: ComponentProps) => {
+const PaymentDetailsForm = ({register, errors}: ComponentProps) => {
   return (
     <Root>
-      <PaymentMethodInput data={paymentMethods} />
+      <PaymentMethodInput
+        data={paymentMethods}
+        error={errors.paymentMethod?.message}
+      />
       <Input
         label={'Card number:'}
         placeholder={'1234 5678 0000 0000 0000 0000 0000'}
         register={register}
         name={'cardNumber'}
+        error={errors.cardNumber?.message}
       />
       <SecurityCodeInput />
     </Root>
