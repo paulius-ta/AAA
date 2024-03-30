@@ -12,6 +12,7 @@
       "@styles/*": ["styles/*"],
       "@stores/*": ["stores/*"],
       "@data/*": ["data/*"],
+      "@xperiments/*": ["xperiments/*"],
     },
     "target": "ES2020",
     "useDefineForClassFields": true,
