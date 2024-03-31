@@ -1,6 +1,13 @@
 import styled, {css} from 'styled-components';
-import SecurityCode from '@components/Wizard/elements/SecurityCode.tsx';
 import Label from '@components/ui/Label/Label.tsx';
+import {Control, FieldErrors, UseFormRegister} from 'react-hook-form';
+import SecurityCode from '@components/Wizard/elements/SecurityCode.tsx';
+
+interface ComponentProps extends CustomComponent {
+  control: Control<SecurityCodeType>;
+  register: UseFormRegister<SecurityCodeType>;
+  errors: FieldErrors<SecurityCodeType>;
+}
 
 const Root = styled.div`
   ${() => css`
@@ -11,13 +18,31 @@ const Root = styled.div`
   `};
 `;
 
-const SecurityCodeInput = () => {
+const SecurityCodeInput = ({control, register, errors}: ComponentProps) => {
   return (
     <Root>
       <Label>TVV</Label>
-      <SecurityCode variant={1} />
-      <SecurityCode variant={2} />
-      <SecurityCode variant={3} />
+      <SecurityCode
+        variant={'c'}
+        control={control}
+        register={register}
+        name={'c'}
+        error={errors.c?.root?.message}
+      />
+      <SecurityCode
+        variant={'m'}
+        control={control}
+        register={register}
+        name={'m'}
+        error={errors.m?.root?.message}
+      />
+      <SecurityCode
+        variant={'y'}
+        control={control}
+        register={register}
+        name={'y'}
+        error={errors.y?.root?.message}
+      />
     </Root>
   );
 };

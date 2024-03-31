@@ -1,37 +1,37 @@
 import styled, {css} from 'styled-components';
-import {dataSecurityCodeSingle} from '@data/dataSecurityCode.ts';
 import colors from '@styles/colors.ts';
-import {useState} from 'react';
+import {Control, Path, UseFormRegister} from 'react-hook-form';
 
 interface ComponentProps extends CustomComponent {
-  variant: 1 | 2 | 3;
+  variant: 'c' | 'm' | 'y';
+  register: UseFormRegister<SecurityCodeType>;
+  control: Control<SecurityCodeType>;
+  name: Path<SecurityCodeType>;
+  error?: string;
 }
 
-const Root = styled.div`
-  ${() => css`
+const Root = styled.div<{$error: boolean}>`
+  ${({$error}) => css`
     width: 100%;
     max-width: 300px;
     aspect-ratio: 1;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
     gap: 5px;
     background: ${colors.light};
     padding: 10px;
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
+
+    ${$error &&
+    css`
+      border: 1px solid ${colors.error};
+    `}
   `};
 `;
 
-const Row = styled.div`
-  ${() => css`
-    width: 100%;
-    display: flex;
-    gap: 5px;
-  `};
-`;
-
-const Checkbox = styled.input<{$variant: number; $placeholder: boolean}>`
-  ${({$variant, $placeholder}) => css`
+const Checkbox = styled.input<{$variant: string}>`
+  ${({$variant}) => css`
     position: relative;
     appearance: none;
     -webkit-appearance: none;
@@ -43,23 +43,6 @@ const Checkbox = styled.input<{$variant: number; $placeholder: boolean}>`
     border-radius: 50%;
     background: ${colors.light};
 
-      ${
-        $placeholder &&
-        css`
-          &:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-            background: ${colors.neutral20};
-            box-shadow: inset 0 0 0 2px ${colors.light};
-          }
-        `
-      }
-
       &:checked {
           box-shadow: inset 0 0 0 2px ${colors.light};
 
@@ -68,21 +51,21 @@ const Checkbox = styled.input<{$variant: number; $placeholder: boolean}>`
           }
 
           ${
-            $variant === 1 &&
+            $variant === 'c' &&
             css`
               background: cyan;
             `
           }
 
           ${
-            $variant === 2 &&
+            $variant === 'm' &&
             css`
               background: magenta;
             `
           }
 
           ${
-            $variant === 3 &&
+            $variant === 'y' &&
             css`
               background: yellow;
             `
@@ -90,31 +73,19 @@ const Checkbox = styled.input<{$variant: number; $placeholder: boolean}>`
   `};
 `;
 
-const SecurityCode = ({variant}: ComponentProps) => {
-  const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
-  const getRandomPlaceholder = () => {
-    return Math.random() < 0.1;
-  };
-
-  const removePlaceholder = () => {
-    setIsPlaceholderVisible(false);
-  };
-
+const SecurityCode = ({variant, register, name, error}: ComponentProps) => {
   return (
-    <Root>
-      {dataSecurityCodeSingle.map((row, index) => {
+    <Root $error={!!error}>
+      {new Array(64).fill(0).map((_, index) => {
         return (
-          <Row key={`security-row-${index}`}>
-            {row.map((_, index) => (
-              <Checkbox
-                key={`security-checkbox-${index}`}
-                type={'checkbox'}
-                $variant={variant}
-                $placeholder={getRandomPlaceholder() && isPlaceholderVisible}
-                onChange={removePlaceholder}
-              />
-            ))}
-          </Row>
+          <Checkbox
+            key={`security-checkbox-${name}-${index}`}
+            type="checkbox"
+            $variant={variant}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            {...register(`${name}.${index}`)}
+          />
         );
       })}
     </Root>
