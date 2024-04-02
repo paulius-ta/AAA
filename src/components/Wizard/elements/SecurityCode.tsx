@@ -1,12 +1,11 @@
 import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
-import {Control, Path, UseFormRegister} from 'react-hook-form';
+import {Control, Controller, Path} from 'react-hook-form';
 
 interface ComponentProps extends CustomComponent {
-  variant: 'c' | 'm' | 'y';
-  register: UseFormRegister<SecurityCodeType>;
   control: Control<SecurityCodeType>;
   name: Path<SecurityCodeType>;
+  onChange: (name: Path<SecurityCodeType>, index: number, char: string) => void;
   error?: string;
 }
 
@@ -15,9 +14,6 @@ const Root = styled.div<{$error: boolean}>`
     width: 100%;
     max-width: 300px;
     aspect-ratio: 1;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 5px;
     background: ${colors.light};
     padding: 10px;
     border: 1px solid ${colors.neutral};
@@ -30,64 +26,81 @@ const Root = styled.div<{$error: boolean}>`
   `};
 `;
 
-const Checkbox = styled.input<{$variant: string}>`
+const CheckboxWrapper = styled.div<{$variant: string}>`
   ${({$variant}) => css`
-    position: relative;
-    appearance: none;
-    -webkit-appearance: none;
-    margin: 0;
-    padding: 0;
     width: 100%;
-    aspect-ratio: 1;
-    border: 1px solid ${colors.neutral20};
-    border-radius: 50%;
-    background: ${colors.light};
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+
+    > input {
+      position: relative;
+      appearance: none;
+      -webkit-appearance: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      aspect-ratio: 1;
+      border: 1px solid ${colors.neutral20};
+      border-radius: 50%;
+      background: ${colors.light};
 
       &:checked {
-          box-shadow: inset 0 0 0 2px ${colors.light};
+        box-shadow: inset 0 0 0 2px ${colors.light};
 
-          &:before {
-              content: none;
-          }
+        &:before {
+          content: none;
+        }
 
-          ${
-            $variant === 'c' &&
-            css`
-              background: cyan;
-            `
-          }
+        ${$variant === 'c' &&
+        css`
+          background: cyan;
+        `}
 
-          ${
-            $variant === 'm' &&
-            css`
-              background: magenta;
-            `
-          }
+        ${$variant === 'm' &&
+        css`
+          background: magenta;
+        `}
 
-          ${
-            $variant === 'y' &&
-            css`
-              background: yellow;
-            `
-          }
+              ${$variant === 'y' &&
+        css`
+          background: yellow;
+        `}
+      }
+    }
   `};
 `;
 
-const SecurityCode = ({variant, register, name, error}: ComponentProps) => {
+const SecurityCode = ({control, name, onChange, error}: ComponentProps) => {
+  const handleChange = (index: number, value: string) => {
+    onChange(name, index, value);
+  };
+
   return (
     <Root $error={!!error}>
-      {new Array(64).fill(0).map((_, index) => {
-        return (
-          <Checkbox
-            key={`security-checkbox-${name}-${index}`}
-            type="checkbox"
-            $variant={variant}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            {...register(`${name}.${index}`)}
-          />
-        );
-      })}
+      <Controller
+        name={name}
+        control={control}
+        render={({field: {value, ref}}) => (
+          <CheckboxWrapper $variant={name}>
+            {Array(64)
+              .fill(0)
+              .map((_, index) => {
+                return (
+                  <input
+                    key={`checkbox-${index}`}
+                    type="checkbox"
+                    ref={ref}
+                    checked={value.charAt(index) === '1'}
+                    onChange={e => {
+                      handleChange(index, e.target.checked ? '1' : '0');
+                    }}
+                  />
+                );
+              })}
+          </CheckboxWrapper>
+        )}
+      />
     </Root>
   );
 };

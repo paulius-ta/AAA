@@ -1,11 +1,11 @@
 import styled, {css} from 'styled-components';
 import Label from '@components/ui/Label/Label.tsx';
-import {Control, FieldErrors, UseFormRegister} from 'react-hook-form';
+import {Control, FieldErrors, Path} from 'react-hook-form';
 import SecurityCode from '@components/Wizard/elements/SecurityCode.tsx';
 
 interface ComponentProps extends CustomComponent {
   control: Control<SecurityCodeType>;
-  register: UseFormRegister<SecurityCodeType>;
+  onChange: (name: Path<SecurityCodeType>, index: number, char: string) => void;
   errors: FieldErrors<SecurityCodeType>;
 }
 
@@ -18,30 +18,27 @@ const Root = styled.div`
   `};
 `;
 
-const SecurityCodeInput = ({control, register, errors}: ComponentProps) => {
+const SecurityCodeInput = ({control, onChange, errors}: ComponentProps) => {
   return (
     <Root>
       <Label>TVV</Label>
       <SecurityCode
-        variant={'c'}
         control={control}
-        register={register}
         name={'c'}
-        error={errors.c?.root?.message}
+        error={errors.c?.message}
+        onChange={onChange}
       />
       <SecurityCode
-        variant={'m'}
         control={control}
-        register={register}
         name={'m'}
-        error={errors.m?.root?.message}
+        error={errors.m?.message}
+        onChange={onChange}
       />
       <SecurityCode
-        variant={'y'}
         control={control}
-        register={register}
         name={'y'}
-        error={errors.y?.root?.message}
+        error={errors.y?.message}
+        onChange={onChange}
       />
     </Root>
   );

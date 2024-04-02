@@ -2,9 +2,9 @@ import {observable, action} from 'mobx';
 
 class ExperimentStore {
   @observable accessor securityCode: SecurityCodeType = {
-    c: new Array(64).fill(false),
-    m: new Array(64).fill(false),
-    y: new Array(64).fill(false),
+    c: '0000000000000000000000000000000000000000000000000000000000000000',
+    m: '0000000000000000000000000000000000000000000000000000000000000000',
+    y: '0000000000000000000000000000000000000000000000000000000000000000',
   };
 
   @action updateSecurityCode(details: SecurityCodeType) {

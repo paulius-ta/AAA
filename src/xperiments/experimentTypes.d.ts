@@ -1,5 +1,5 @@
 interface SecurityCodeType {
-  c: boolean[];
-  m: boolean[];
-  y: boolean[];
+  c: string;
+  m: string;
+  y: string;
 }

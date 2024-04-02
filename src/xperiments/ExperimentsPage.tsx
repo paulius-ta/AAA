@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
-import SecurityCodeInput from '@components/Wizard/elements/SecurityCodeInput.tsx';
 import useExperiments from '@xperiments/hooks/useExperiments.ts';
 import Button from '@components/ui/Button/Button.tsx';
+import SecurityCodeInput from '@components/Wizard/elements/SecurityCodeInput.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -23,15 +23,18 @@ const StyledButton = styled(Button)`
 `;
 
 const ExperimentsPage = () => {
-  const {handleClick, control, register, errors} = useExperiments();
+  const {handleClick, control, errors, handleSecurityCodeChange} =
+    useExperiments();
 
   return (
     <Root>
       <SecurityCodeInput
         control={control}
-        register={register}
+        onChange={handleSecurityCodeChange}
         errors={errors}
       />
+      {errors.c?.message}
+
       <StyledButton onClick={handleClick}>submit</StyledButton>
     </Root>
   );
