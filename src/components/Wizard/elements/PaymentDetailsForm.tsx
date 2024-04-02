@@ -2,7 +2,6 @@ import styled, {css} from 'styled-components';
 import Input from '@components/ui/Input/Input.tsx';
 import PaymentMethodInput from '@components/Wizard/elements/PaymentMethodInput.tsx';
 import {paymentMethods} from '@data/dataPaymentDetailsForm.ts';
-import SecurityCodeInput from '@components/Wizard/elements/SecurityCodeInput.tsx';
 import {FieldErrors, UseFormRegister} from 'react-hook-form';
 import {PaymentDetails} from '@customTypes/model/apiTypes.ts';
 
@@ -33,7 +32,6 @@ const PaymentDetailsForm = ({register, errors}: ComponentProps) => {
         name={'cardNumber'}
         error={errors.cardNumber?.message}
       />
-      <SecurityCodeInput />
     </Root>
   );
 };
