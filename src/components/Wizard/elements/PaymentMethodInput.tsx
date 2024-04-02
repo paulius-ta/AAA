@@ -1,12 +1,13 @@
 import styled, {css} from 'styled-components';
-import {PaymentMethods} from '@customTypes/model/apiTypes.ts';
+import {PaymentDetails, PaymentMethods} from '@customTypes/model/apiTypes.ts';
 import Label from '@components/ui/Label/Label.tsx';
-import {useStore} from '@stores/store.ts';
-import {ChangeEvent} from 'react';
 import colors from '@styles/colors.ts';
+import {Path, UseFormRegister} from 'react-hook-form';
 
 interface ComponentProps extends CustomComponent {
   data: PaymentMethods;
+  register: UseFormRegister<PaymentDetails>;
+  name: Path<PaymentDetails>;
   error?: string;
 }
 
@@ -26,7 +27,7 @@ const Method = styled.label<{$error: boolean}>`
 
     ${$error &&
     css`
-      border: 1px solid ${colors.error};
+      outline: 1px solid ${colors.error};
       border-radius: 5px;
     `}
 
@@ -57,25 +58,13 @@ const Method = styled.label<{$error: boolean}>`
   `};
 `;
 
-const PaymentMethodInput = ({data, error}: ComponentProps) => {
-  const {wizardStore} = useStore();
-
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    wizardStore.setPaymentMethod(e.target.value);
-  };
-
+const PaymentMethodInput = ({data, error, register, name}: ComponentProps) => {
   return (
     <Root>
       <Label>Payment method:</Label>
       {data.map((method, index) => (
         <Method key={`${index}-payment-method`} $error={!!error}>
-          <input
-            type={'radio'}
-            name={'payment-method'}
-            value={method.value}
-            id={`payment-method-${index}`}
-            onChange={handleOnChange}
-          />
+          <input type={'radio'} value={method.value} {...register(name)} />
           <img src={method.url} alt={method.value} />
         </Method>
       ))}

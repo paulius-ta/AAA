@@ -24,6 +24,8 @@ const PaymentDetailsForm = ({register, errors}: ComponentProps) => {
       <PaymentMethodInput
         data={paymentMethods}
         error={errors.paymentMethod?.message}
+        register={register}
+        name={'paymentMethod'}
       />
       <Input
         label={'Card number:'}
