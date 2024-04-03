@@ -1,5 +1,9 @@
 import {observable, action} from 'mobx';
-import {ContactDetails, PaymentDetails} from '@customTypes/model/apiTypes.ts';
+import {
+  ContactDetails,
+  PaymentDetails,
+  SecurityCodeDetails,
+} from '@customTypes/model/apiTypes.ts';
 
 class WizardStore {
   INITIAL_STEP = 0;
@@ -36,6 +40,12 @@ class WizardStore {
     cardNumber: null,
   };
 
+  @observable accessor securityCodeDetails: SecurityCodeDetails = {
+    c: '0000000000000000000000000000000000000000000000000000000000000000',
+    m: '0000000000000000000000000000000000000000000000000000000000000000',
+    y: '0000000000000000000000000000000000000000000000000000000000000000',
+  };
+
   @action setStep(step: number) {
     this.step = step;
   }
@@ -54,6 +64,10 @@ class WizardStore {
 
   @action updatePaymentDetails(details: PaymentDetails) {
     this.paymentDetails = {...this.paymentDetails, ...details};
+  }
+
+  @action updateSecurityCodeDetails(details: SecurityCodeDetails) {
+    this.securityCodeDetails = {...this.securityCodeDetails, ...details};
   }
 }
 
