@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form';
 import {PaymentDetails} from '@customTypes/model/apiTypes.ts';
 import {number, object, ObjectSchema, string} from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
+import useSecurityCodeDetails from '@hooks/useSecurityCodeDetails.ts';
 
 const paymentDetailsSchema: ObjectSchema<PaymentDetails> = object().shape({
   paymentMethod: string().required(),
@@ -12,22 +13,46 @@ const paymentDetailsSchema: ObjectSchema<PaymentDetails> = object().shape({
 const usePaymentDetailsTransition = () => {
   const {wizardStore} = useStore();
   const {
+    securityCodeHandleSubmit,
+    securityCodeControl,
+    securityCodeErrors,
+    securityCodeIsValid,
+    handleSecurityCodeChange,
+  } = useSecurityCodeDetails();
+
+  const {
     register,
+    control,
     handleSubmit,
-    setValue,
-    formState: {errors},
+    formState: {errors, isValid},
   } = useForm<PaymentDetails>({
     resolver: yupResolver(paymentDetailsSchema),
     shouldFocusError: false,
   });
 
-  const handleTransition = handleSubmit(data => {
-    console.log(data);
-    wizardStore.updatePaymentDetails(data);
-    wizardStore.setStep(2);
-  });
+  const handleTransition = () => {
+    handleSubmit(data => {
+      wizardStore.updatePaymentDetails(data);
+    })();
 
-  return {handleTransition, register, setValue, errors};
+    securityCodeHandleSubmit(data => {
+      wizardStore.updateSecurityCodeDetails(data);
+    })();
+
+    if (!isValid || !securityCodeIsValid) return;
+
+    wizardStore.setStep(2);
+  };
+
+  return {
+    handleTransition,
+    handleSecurityCodeChange,
+    securityCodeControl,
+    securityCodeErrors,
+    register,
+    control,
+    errors,
+  };
 };
 
 export default usePaymentDetailsTransition;
