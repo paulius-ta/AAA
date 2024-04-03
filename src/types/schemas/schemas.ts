@@ -73,6 +73,11 @@ export interface components {
       /** Format: int64 */
       cardNumber: number | null;
     };
+    SecurityCode: {
+      c: string;
+      m: string;
+      y: string;
+    };
   };
   responses: never;
   parameters: never;

@@ -11,3 +11,4 @@ export type ImageUrl = SchemaTypes['ImageUrl'];
 export type PaymentMethods = SchemaTypes['PaymentMethods'];
 export type ContactDetails = SchemaTypes['ContactDetails'];
 export type PaymentDetails = SchemaTypes['PaymentDetails'];
+export type SecurityCodeDetails = SchemaTypes['SecurityCode'];

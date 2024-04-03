@@ -170,3 +170,16 @@ components:
           type: number
           format: int64
           nullable: true
+    SecurityCode:
+      type: object
+      required:
+        - c
+        - m
+        - y
+      properties:
+        c:
+          type: string
+        m:
+          type: string
+        y:
+          type: string
