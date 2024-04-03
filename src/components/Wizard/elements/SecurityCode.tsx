@@ -1,11 +1,16 @@
 import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
 import {Control, Controller, Path} from 'react-hook-form';
+import {SecurityCodeDetails} from '@customTypes/model/apiTypes.ts';
 
 interface ComponentProps extends CustomComponent {
-  control: Control<SecurityCodeType>;
-  name: Path<SecurityCodeType>;
-  onChange: (name: Path<SecurityCodeType>, index: number, char: string) => void;
+  control: Control<SecurityCodeDetails>;
+  name: Path<SecurityCodeDetails>;
+  onChange: (
+    name: Path<SecurityCodeDetails>,
+    index: number,
+    char: string
+  ) => void;
   error?: string;
 }
 
@@ -91,7 +96,7 @@ const SecurityCode = ({control, name, onChange, error}: ComponentProps) => {
                     key={`checkbox-${index}`}
                     type="checkbox"
                     ref={ref}
-                    checked={value.charAt(index) === '1'}
+                    checked={value[index] === '1'}
                     onChange={e => {
                       handleChange(index, e.target.checked ? '1' : '0');
                     }}

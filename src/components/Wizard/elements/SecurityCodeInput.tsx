@@ -2,11 +2,16 @@ import styled, {css} from 'styled-components';
 import Label from '@components/ui/Label/Label.tsx';
 import {Control, FieldErrors, Path} from 'react-hook-form';
 import SecurityCode from '@components/Wizard/elements/SecurityCode.tsx';
+import {SecurityCodeDetails} from '@customTypes/model/apiTypes.ts';
 
 interface ComponentProps extends CustomComponent {
-  control: Control<SecurityCodeType>;
-  onChange: (name: Path<SecurityCodeType>, index: number, char: string) => void;
-  errors: FieldErrors<SecurityCodeType>;
+  control: Control<SecurityCodeDetails>;
+  onChange: (
+    name: Path<SecurityCodeDetails>,
+    index: number,
+    char: string
+  ) => void;
+  errors: FieldErrors<SecurityCodeDetails>;
 }
 
 const Root = styled.div`
