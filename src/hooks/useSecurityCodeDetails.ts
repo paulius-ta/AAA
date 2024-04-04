@@ -5,17 +5,15 @@ import {SecurityCodeDetails} from '@customTypes/model/apiTypes.ts';
 import useHelper from '@utils/useHelper.ts';
 import {useStore} from '@stores/store.ts';
 
+const validateSecurityCode = (value: string, length = 3) => {
+  return (value.match(/1/g) || []).length >= length;
+};
+
 const securityCodeDetailsSchema: ObjectSchema<SecurityCodeDetails> =
   object().shape({
-    c: string().test('at-least-three-ones', value =>
-      /^(?:[^1]*1[^1]*){3}$/.test(value ?? '')
-    ),
-    m: string().test('at-least-three-ones', value =>
-      /^(?:[^1]*1[^1]*){3}$/.test(value ?? '')
-    ),
-    y: string().test('at-least-three-ones', value =>
-      /^(?:[^1]*1[^1]*){3}$/.test(value ?? '')
-    ),
+    c: string().test('is c valid', value => validateSecurityCode(value || '')),
+    m: string().test('is m valid', value => validateSecurityCode(value || '')),
+    y: string().test('is y valid', value => validateSecurityCode(value || '')),
   }) as ObjectSchema<SecurityCodeDetails>;
 
 const useSecurityCodeDetails = () => {
@@ -27,7 +25,7 @@ const useSecurityCodeDetails = () => {
     handleSubmit,
     setValue,
     getValues,
-    formState: {errors, isValid},
+    formState: {errors, isValid, isSubmitted},
   } = useForm<SecurityCodeDetails>({
     resolver: yupResolver(
       securityCodeDetailsSchema
@@ -44,7 +42,7 @@ const useSecurityCodeDetails = () => {
 
     if (!value) return;
 
-    setValue(name, value, {shouldValidate: true});
+    setValue(name, value, {shouldValidate: isSubmitted});
   };
 
   return {
