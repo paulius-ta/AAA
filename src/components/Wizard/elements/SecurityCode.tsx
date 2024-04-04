@@ -93,6 +93,7 @@ const SecurityCode = ({control, name, onChange, error}: ComponentProps) => {
               .map((_, index) => {
                 return (
                   <input
+                    id={`ccv-${name}-${index}`}
                     key={`checkbox-${index}`}
                     type="checkbox"
                     ref={ref}
