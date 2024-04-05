@@ -28,6 +28,7 @@ const usePaymentDetailsTransition = () => {
   } = useForm<PaymentDetails>({
     resolver: yupResolver(paymentDetailsSchema),
     shouldFocusError: false,
+    defaultValues: wizardStore.paymentDetails,
   });
 
   const handleTransition = () => {

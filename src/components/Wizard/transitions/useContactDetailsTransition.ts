@@ -37,6 +37,7 @@ const useContactDetailsTransition = () => {
   } = useForm<ContactDetails>({
     resolver: yupResolver(contactDetailsSchema),
     shouldFocusError: false,
+    defaultValues: wizardStore.contactDetails,
   });
 
   const handleTransition = handleSubmit(data => {
