@@ -45,6 +45,7 @@ const usePaymentDetailsTransition = () => {
     if (!isValid || !isSecurityCodeValid) return;
 
     wizardStore.setStep(2);
+    wizardStore.setValidStep(2);
   };
 
   return {

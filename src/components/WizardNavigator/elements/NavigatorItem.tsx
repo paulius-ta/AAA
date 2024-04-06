@@ -9,8 +9,9 @@ interface ComponentProps extends CustomComponent {
   onClick: () => void;
 }
 
-const Root = styled.div`
+const Root = styled.button`
   ${() => css`
+    all: unset;
     width: 100%;
     padding: 16px;
     display: flex;
@@ -53,12 +54,13 @@ const Index = styled.div<{$active: boolean; $disabled: boolean}>`
         background: url('/src/assets/icons/ic_orbit-large.svg') no-repeat center;
         background-size: contain;
         animation: spin 4s linear infinite;
+        pointer-events: none;
       }
     `}
 
     ${$disabled &&
     css`
-      cursor: initial;
+      cursor: not-allowed;
       background: ${colors.neutral20};
     `}
   `};
@@ -66,7 +68,7 @@ const Index = styled.div<{$active: boolean; $disabled: boolean}>`
 
 const NavigatorItem = ({onClick, icon, active, disabled}: ComponentProps) => {
   return (
-    <Root>
+    <Root disabled={disabled}>
       <Index onClick={onClick} $active={active} $disabled={disabled}>
         <Icon icon={icon} size={20} />
       </Index>

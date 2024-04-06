@@ -43,6 +43,7 @@ const useContactDetailsTransition = () => {
   const handleTransition = handleSubmit(data => {
     wizardStore.updateContactDetails(data);
     wizardStore.setStep(1);
+    wizardStore.setValidStep(1);
   });
 
   return {handleTransition, register, control, errors};

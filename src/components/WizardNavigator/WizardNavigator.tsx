@@ -14,7 +14,7 @@ const Root = styled.div`
 `;
 
 const WizardNavigator = observer(() => {
-  const {activeStep, handleClick} = useWizardNavigator();
+  const {activeStep, validStep, handleClick} = useWizardNavigator();
 
   return (
     <Root>
@@ -25,7 +25,7 @@ const WizardNavigator = observer(() => {
             key={`${step.id}-step`}
             icon={step.icon}
             active={step.id === activeStep}
-            disabled={false}
+            disabled={step.id > validStep}
           />
         );
       })}

@@ -7,7 +7,11 @@ const useWizardNavigator = () => {
     wizardStore.setStep(id);
   };
 
-  return {handleClick, activeStep: wizardStore.step};
+  return {
+    handleClick,
+    activeStep: wizardStore.step,
+    validStep: wizardStore.validStep,
+  };
 };
 
 export default useWizardNavigator;

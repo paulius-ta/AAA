@@ -10,6 +10,8 @@ class WizardStore {
 
   @observable accessor step: number = this.INITIAL_STEP;
 
+  @observable accessor validStep: number = this.INITIAL_STEP;
+
   @observable accessor bidAmount: Nullable<number> = null;
 
   @observable accessor contactDetails: ContactDetails = {
@@ -48,6 +50,10 @@ class WizardStore {
 
   @action setStep(step: number) {
     this.step = step;
+  }
+
+  @action setValidStep(step: number) {
+    this.validStep = step;
   }
 
   @action setBidAmount(amount: number) {
