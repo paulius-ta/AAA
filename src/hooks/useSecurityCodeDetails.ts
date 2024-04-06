@@ -25,7 +25,7 @@ const useSecurityCodeDetails = () => {
     handleSubmit,
     setValue,
     getValues,
-    formState: {errors, isValid, isSubmitted},
+    formState: {errors, isSubmitted},
   } = useForm<SecurityCodeDetails>({
     resolver: yupResolver(
       securityCodeDetailsSchema
@@ -45,12 +45,16 @@ const useSecurityCodeDetails = () => {
     setValue(name, value, {shouldValidate: isSubmitted});
   };
 
+  const getSecurityCodeValidState = async () => {
+    return securityCodeDetailsSchema.isValid(getValues());
+  };
+
   return {
     handleSecurityCodeChange,
     securityCodeControl: control,
     securityCodeErrors: errors,
     securityCodeHandleSubmit: handleSubmit,
-    securityCodeIsValid: isValid,
+    getSecurityCodeValidState,
   };
 };
 

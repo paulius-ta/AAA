@@ -16,7 +16,7 @@ const usePaymentDetailsTransition = () => {
     securityCodeHandleSubmit,
     securityCodeControl,
     securityCodeErrors,
-    securityCodeIsValid,
+    getSecurityCodeValidState,
     handleSecurityCodeChange,
   } = useSecurityCodeDetails();
 
@@ -31,16 +31,18 @@ const usePaymentDetailsTransition = () => {
     defaultValues: wizardStore.paymentDetails,
   });
 
-  const handleTransition = () => {
-    handleSubmit(data => {
+  const handleTransition = async () => {
+    await handleSubmit(data => {
       wizardStore.updatePaymentDetails(data);
     })();
 
-    securityCodeHandleSubmit(data => {
+    await securityCodeHandleSubmit(data => {
       wizardStore.updateSecurityCodeDetails(data);
     })();
 
-    if (!isValid || !securityCodeIsValid) return;
+    const isSecurityCodeValid = await getSecurityCodeValidState();
+
+    if (!isValid || !isSecurityCodeValid) return;
 
     wizardStore.setStep(2);
   };
