@@ -26,7 +26,7 @@ const Root = styled.div`
 const SecurityCodeInput = ({control, onChange, errors}: ComponentProps) => {
   return (
     <Root>
-      <Label>TVV</Label>
+      <Label>TVV:</Label>
       <SecurityCode
         control={control}
         name={'c'}
