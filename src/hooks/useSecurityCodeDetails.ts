@@ -5,6 +5,8 @@ import {SecurityCodeDetails} from '@customTypes/model/apiTypes.ts';
 import useHelper from '@utils/useHelper.ts';
 import {useStore} from '@stores/store.ts';
 
+interface PreviewArray extends Array<Array<boolean>> {}
+
 const validateSecurityCode = (value: string, length = 3) => {
   return (value.match(/1/g) || []).length >= length;
 };
@@ -49,12 +51,29 @@ const useSecurityCodeDetails = () => {
     return securityCodeDetailsSchema.isValid(getValues());
   };
 
+  const createPreviewArray = (): PreviewArray => {
+    const previewArray: PreviewArray = [];
+
+    Object.values(wizardStore.securityCodeDetails).forEach(
+      (item, itemIndex) => {
+        Array.from(item).forEach((value, valueIndex) => {
+          if (!previewArray[valueIndex]) previewArray[valueIndex] = [];
+
+          previewArray[valueIndex][itemIndex] = value === '1';
+        });
+      }
+    );
+
+    return previewArray;
+  };
+
   return {
     handleSecurityCodeChange,
     securityCodeControl: control,
     securityCodeErrors: errors,
     securityCodeHandleSubmit: handleSubmit,
     getSecurityCodeValidState,
+    createPreviewArray,
   };
 };
 
