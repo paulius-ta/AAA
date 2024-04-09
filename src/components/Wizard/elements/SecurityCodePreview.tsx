@@ -4,7 +4,6 @@ import colors from '@styles/colors.ts';
 
 const Root = styled.div`
   ${() => css`
-    flex-shrink: 0;
     width: 100%;
     max-width: 200px;
     aspect-ratio: 1;

@@ -8,6 +8,8 @@ import colors from '@styles/colors.ts';
 import Separator from '@components/ui/Separator/Separator.tsx';
 import Label from '@components/ui/Label/Label.tsx';
 import {paymentMethods} from '@data/dataPaymentDetailsForm.ts';
+import SecurityCodePreview from '@components/Wizard/elements/SecurityCodePreview.tsx';
+import HiddenComponent from '@components/HiddenComponent.tsx';
 
 interface ComponentProps extends CustomComponent {
   data: PaymentDetails;
@@ -64,6 +66,10 @@ const PaymentDetailsBox = ({data}: ComponentProps) => {
           <Label>Card number:</Label>
           <StyledText boxed>{data.cardNumber}</StyledText>
         </Row>
+        <StyledSeparator />
+        <HiddenComponent label={'TVV:'}>
+          <SecurityCodePreview />
+        </HiddenComponent>
       </Accordion>
     </Root>
   );
