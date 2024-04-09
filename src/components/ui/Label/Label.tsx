@@ -17,8 +17,8 @@ const Root = styled.div`
   `};
 `;
 
-const Label = ({children}: ComponentProps) => {
-  return <Root>{children}</Root>;
+const Label = ({children, className}: ComponentProps) => {
+  return <Root className={className}>{children}</Root>;
 };
 
 export default Label;
