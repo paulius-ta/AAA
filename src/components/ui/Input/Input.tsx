@@ -24,8 +24,8 @@ const Root = styled.div<{$hasLabel: boolean}>`
   `};
 `;
 
-const InputField = styled.input<{$showCurrency?: boolean; $error: boolean}>`
-  ${({$showCurrency, $error}) => css`
+const InputField = styled.input<{$showCurrency?: boolean}>`
+  ${({$showCurrency}) => css`
     width: 100%;
     height: 100%;
     font-family: 'foreign', sans-serif;
@@ -46,10 +46,9 @@ const InputField = styled.input<{$showCurrency?: boolean; $error: boolean}>`
       padding-right: 80px;
     `}
 
-    ${$error &&
-    css`
+    &.error {
       border: 1px solid ${colors.error};
-    `}
+    }
   `};
 `;
 
@@ -91,7 +90,7 @@ const Input = <T extends FieldValues>({
           id={name}
           placeholder={placeholder}
           $showCurrency={showCurrency}
-          $error={!!error}
+          className={error ? 'error' : ''}
           {...register(name)}
         />
         {showCurrency && <Currency>eur</Currency>}

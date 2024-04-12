@@ -13,9 +13,9 @@ interface ComponentProps<T extends FieldValues> extends CustomComponent {
   error?: string;
 }
 
-const Root = styled.div<{$width?: number; $error: boolean}>`
+const Root = styled.div<{$width?: number}>`
   ${reactSelect}
-  ${({$width, $error}) => css`
+  ${({$width}) => css`
     width: 100%;
     flex-shrink: 0;
     font-family: 'galactico', sans-serif;
@@ -30,8 +30,7 @@ const Root = styled.div<{$width?: number; $error: boolean}>`
       width: ${$width}px;
     `}
 
-    ${$error &&
-    css`
+    &.error {
       .select__control {
         border: 1px solid ${colors.error};
 
@@ -43,7 +42,7 @@ const Root = styled.div<{$width?: number; $error: boolean}>`
       .select__dropdown-indicator {
         color: ${colors.error};
       }
-    `}
+    }
   `};
 `;
 
@@ -57,7 +56,7 @@ const Select = <T extends FieldValues>({
   const {config} = useSelect(options);
 
   return (
-    <Root $width={width} $error={!!error}>
+    <Root $width={width} className={error ? 'error' : ''}>
       <Controller
         name={name}
         control={control}

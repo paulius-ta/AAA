@@ -19,17 +19,16 @@ const Root = styled.div`
   grid-template-columns: repeat(5, 1fr);
 `;
 
-const Method = styled.label<{$error: boolean}>`
-  ${({$error}) => css`
+const Method = styled.label`
+  ${() => css`
     position: relative;
     display: inline-block;
     cursor: pointer;
 
-    ${$error &&
-    css`
+    &.error {
       outline: 1px solid ${colors.error};
       border-radius: 5px;
-    `}
+    }
 
     img {
       width: 100%;
@@ -63,7 +62,10 @@ const PaymentMethodInput = ({data, error, register, name}: ComponentProps) => {
     <Root>
       <Label>Payment method:</Label>
       {data.map((method, index) => (
-        <Method key={`${index}-payment-method`} $error={!!error}>
+        <Method
+          key={`${index}-payment-method`}
+          className={error ? 'error' : ''}
+        >
           <input type={'radio'} value={method.value} {...register(name)} />
           <img src={method.url} alt={method.value} />
         </Method>

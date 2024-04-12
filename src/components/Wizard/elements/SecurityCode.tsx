@@ -14,8 +14,8 @@ interface ComponentProps extends CustomComponent {
   error?: string;
 }
 
-const Root = styled.div<{$error: boolean}>`
-  ${({$error}) => css`
+const Root = styled.div`
+  ${() => css`
     width: 100%;
     max-width: 300px;
     aspect-ratio: 1;
@@ -24,10 +24,9 @@ const Root = styled.div<{$error: boolean}>`
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
 
-    ${$error &&
-    css`
+    &.error {
       border: 1px solid ${colors.error};
-    `}
+    }
   `};
 `;
 
@@ -82,7 +81,7 @@ const SecurityCode = ({control, name, onChange, error}: ComponentProps) => {
   };
 
   return (
-    <Root $error={!!error}>
+    <Root className={error ? 'error' : ''}>
       <Controller
         name={name}
         control={control}
