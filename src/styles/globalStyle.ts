@@ -33,6 +33,10 @@ const GlobalStyle = createGlobalStyle`
         }
       }
     `}
+    
+    .display-none {
+        display: none;
+    }
 `;
 
 export default GlobalStyle;
