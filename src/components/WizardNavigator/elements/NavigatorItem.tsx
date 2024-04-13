@@ -2,6 +2,8 @@ import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
 import {FunctionComponent} from 'react';
 import Icon from '@components/ui/Icon/Icon.tsx';
+import c from 'classnames';
+
 interface ComponentProps extends CustomComponent {
   icon: FunctionComponent;
   active: boolean;
@@ -20,8 +22,8 @@ const Root = styled.button`
   `};
 `;
 
-const Index = styled.div<{$active: boolean; $disabled: boolean}>`
-  ${({$active, $disabled}) => css`
+const Index = styled.div`
+  ${() => css`
     cursor: pointer;
     position: relative;
     width: 32px;
@@ -34,8 +36,7 @@ const Index = styled.div<{$active: boolean; $disabled: boolean}>`
     color: ${colors.primaryOnAction};
     font-size: 20px;
 
-    ${$active &&
-    css`
+    &.active {
       @keyframes spin {
         100% {
           transform: translate(-50%, -50%) rotate(360deg);
@@ -56,20 +57,22 @@ const Index = styled.div<{$active: boolean; $disabled: boolean}>`
         animation: spin 4s linear infinite;
         pointer-events: none;
       }
-    `}
+    }
 
-    ${$disabled &&
-    css`
+    &.disabled {
       cursor: not-allowed;
       background: ${colors.neutral20};
-    `}
+    }
   `};
 `;
 
 const NavigatorItem = ({onClick, icon, active, disabled}: ComponentProps) => {
   return (
     <Root disabled={disabled}>
-      <Index onClick={onClick} $active={active} $disabled={disabled}>
+      <Index
+        onClick={onClick}
+        className={c({active: active, disabled: disabled})}
+      >
         <Icon icon={icon} size={20} />
       </Index>
     </Root>
