@@ -10,6 +10,8 @@ import usePreviewTransition from '@components/Wizard/transitions/usePreviewTrans
 import {dataHistory} from '@data/dataHistory.ts';
 import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
 
+interface ComponentProps extends CustomComponent {}
+
 const Root = styled(Box)`
   ${() => css`
     display: flex;
@@ -39,12 +41,12 @@ const BottomContainer = styled.div`
   `};
 `;
 
-const PreviewStep = () => {
+const PreviewStep = ({className}: ComponentProps) => {
   const {handleTransition, register, contactDetails, paymentDetails} =
     usePreviewTransition();
 
   return (
-    <Root>
+    <Root className={className}>
       <StyledIcon icon={iconPreview} />
       <ContactDetailsBox data={contactDetails} />
       <PaymentDetailsBox data={paymentDetails} />

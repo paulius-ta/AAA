@@ -6,6 +6,8 @@ import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconContact} from '@assets/AssetsProvider.ts';
 import useContactDetailsTransition from '@components/Wizard/transitions/useContactDetailsTransition.ts';
 
+interface ComponentProps extends CustomComponent {}
+
 const Root = styled(Box)`
   ${() => css`
     display: flex;
@@ -25,19 +27,19 @@ const StyledIcon = styled(Icon)`
     align-self: center;
   `};
 `;
-const ContactDetailsStep = () => {
+const ContactDetailsStep = ({className}: ComponentProps) => {
   const {handleTransition, register, control, errors} =
     useContactDetailsTransition();
 
   return (
-    <Root>
+    <Root className={className}>
       <StyledIcon icon={iconContact} />
       <ContactDetailsForm
         register={register}
         control={control}
         errors={errors}
       />
-      <StyledButton onClick={handleTransition}>Next</StyledButton>
+      <StyledButton onClick={() => handleTransition()}>Next</StyledButton>
     </Root>
   );
 };

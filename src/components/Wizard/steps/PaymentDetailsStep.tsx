@@ -6,6 +6,8 @@ import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconPayment} from '@assets/AssetsProvider.ts';
 import usePaymentDetailsTransition from '@components/Wizard/transitions/usePaymentDetailsTransition.ts';
 
+interface ComponentProps extends CustomComponent {}
+
 const Root = styled(Box)`
   ${() => css`
     display: flex;
@@ -26,7 +28,7 @@ const StyledIcon = styled(Icon)`
   `};
 `;
 
-const PaymentDetailsStep = () => {
+const PaymentDetailsStep = ({className}: ComponentProps) => {
   const {
     handleTransition,
     handleSecurityCodeChange,
@@ -37,7 +39,7 @@ const PaymentDetailsStep = () => {
   } = usePaymentDetailsTransition();
 
   return (
-    <Root>
+    <Root className={className}>
       <StyledIcon icon={iconPayment} />
       <PaymentDetailsForm
         register={register}
