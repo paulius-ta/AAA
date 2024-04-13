@@ -19,21 +19,24 @@ const TopContainer = styled.div`
   `};
 `;
 
-const BottomContainer = styled.div<{$isOpen: boolean}>`
-  ${({$isOpen}) => css`
-    min-height: ${$isOpen ? 'auto' : '0px'};
+const BottomContainer = styled.div`
+  ${() => css`
     height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 20px;
+    transition: 0.1s;
 
-    ${!$isOpen &&
-    css`
+    &.open {
+      margin-top: 20px;
+      max-height: 1000px;
+    }
+
+    &.closed {
       max-height: 0;
       overflow: hidden;
       margin-top: 0;
-    `}
+    }
   `};
 `;
 
@@ -62,7 +65,9 @@ const Accordion = ({children, icon, isAutoCollapsed}: ComponentProps) => {
           <StyledIcon icon={iconChevronDown} $isOpen={isOpen} />
         </IconWrapper>
       </TopContainer>
-      <BottomContainer $isOpen={isOpen}>{children}</BottomContainer>
+      <BottomContainer className={isOpen ? 'open' : 'closed'}>
+        {children}
+      </BottomContainer>
     </Root>
   );
 };

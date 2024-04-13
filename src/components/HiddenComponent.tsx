@@ -25,21 +25,23 @@ const Root = styled.div<{$hasLabel?: boolean}>`
   `};
 `;
 
-const LeftContainer = styled.div<{$isOpen: boolean; $hasLabel: boolean}>`
-  ${({$isOpen, $hasLabel}) => css`
+const LeftContainer = styled.div<{$hasLabel: boolean}>`
+  ${({$hasLabel}) => css`
     flex-basis: calc(100% - 20px);
-    min-height: ${$isOpen ? 'auto' : '0px'};
     height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    transition: 0.1s;
 
-    ${!$isOpen &&
-    css`
+    &.open {
+      max-height: 1000px;
+    }
+
+    &.closed {
       max-height: 0;
       overflow: hidden;
-      margin-top: 0;
-    `}
+    }
 
     ${$hasLabel &&
     css`
@@ -72,7 +74,7 @@ const HiddenComponent = ({children, label}: ComponentProps) => {
   return (
     <Root $hasLabel={!!label}>
       {label && <StyledLabel>{label}</StyledLabel>}
-      <LeftContainer $isOpen={isOpen} $hasLabel={!!label}>
+      <LeftContainer className={isOpen ? 'open' : 'closed'} $hasLabel={!!label}>
         {children}
       </LeftContainer>
       <RightContainer>
