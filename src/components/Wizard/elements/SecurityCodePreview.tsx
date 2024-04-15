@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import useSecurityCodeDetails from '@hooks/useSecurityCodeDetails.ts';
 import colors from '@styles/colors.ts';
+import c from 'classnames';
 
 const Root = styled.div`
   ${() => css`
@@ -16,30 +17,22 @@ const Root = styled.div`
   `};
 `;
 
-const PreviewItem = styled.div<{
-  $type: number;
-  $c?: boolean;
-  $m?: boolean;
-  $y?: boolean;
-}>`
-  ${({$type, $c, $m, $y}) => css`
+const PreviewItem = styled.div`
+  ${() => css`
     position: relative;
     width: 100%;
 
     &:before {
-      ${$type !== 0 &&
-      css`
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 75%;
-        height: 75%;
-        background: ${colors.background};
-        border-radius: 50%;
-        z-index: 1;
-      `}
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 75%;
+      height: 75%;
+      background: ${colors.background};
+      border-radius: 50%;
+      z-index: 1;
     }
 
     &:after {
@@ -47,57 +40,69 @@ const PreviewItem = styled.div<{
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      //width: 75%;
-      //height: 75%;
       width: 100%;
       height: 100%;
+      transform: translate(-50%, -50%);
       border-radius: 50%;
+    }
 
-      ${$type === 0 &&
-      css`
+    &.type0 {
+      &:after {
         width: 3px;
         height: 3px;
         background: ${colors.neutral20};
-      `}
+      }
 
-      ${$type === 1 &&
-      css`
-        ${$c && {background: 'cyan'}}
-        ${$m && {background: 'magenta'}}
-        ${$y && {background: 'yellow'}}
-      `}
+      &:before {
+        all: unset;
+      }
+    }
 
-      ${$type === 2 &&
-      css`
-        ${$c &&
-        $m &&
-        css`
-          background: linear-gradient(to right, cyan 50%, magenta 50%);
-        `}
+    &.type1.c {
+      &:after {
+        background: cyan;
+      }
+    }
 
-        ${$c &&
-        $y &&
-        css`
-          background: linear-gradient(to right, cyan 50%, yellow 50%);
-        `}
+    &.type1.m {
+      &:after {
+        background: magenta;
+      }
+    }
 
-        ${$m &&
-        $y &&
-        css`
-          background: linear-gradient(to right, magenta 50%, yellow 50%);
-        `}
-      `}
+    &.type1.y {
+      &:after {
+        background: yellow;
+      }
+    }
 
-      ${$type === 3 &&
-      css`
+    &.type2.c.m {
+      &:after {
+        background: linear-gradient(to right, cyan 50%, magenta 50%);
+      }
+    }
+
+    &.type2.c.y {
+      &:after {
+        background: linear-gradient(to right, cyan 50%, yellow 50%);
+      }
+    }
+
+    &.type2.m.y {
+      &:after {
+        background: linear-gradient(to right, magenta 50%, yellow 50%);
+      }
+    }
+
+    &.type3 {
+      &:after {
         background: conic-gradient(
           cyan 33.33%,
           magenta 33.33%,
           magenta 66.66%,
           yellow 66.66%
         );
-      `}
+      }
     }
   `};
 `;
@@ -109,15 +114,20 @@ const SecurityCodePreview = () => {
 
   const getPreviewItem = (index: number) => {
     const valueArray = previewArray[index];
-    const filteredValueArray = valueArray.filter(value => value);
+    const type = valueArray.filter(value => value).length;
 
     return (
       <PreviewItem
         key={index}
-        $type={filteredValueArray.length}
-        $c={valueArray[0]}
-        $m={valueArray[1]}
-        $y={valueArray[2]}
+        className={c({
+          type0: type === 0,
+          type1: type === 1,
+          type2: type === 2,
+          type3: type === 3,
+          c: valueArray[0],
+          m: valueArray[1],
+          y: valueArray[2],
+        })}
       />
     );
   };
