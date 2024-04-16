@@ -1,7 +1,6 @@
 import styled, {css} from 'styled-components';
 import 'swiper/swiper-bundle.css';
 import useImageSlider from '@hooks/useImageSlider.ts';
-import colors from '@styles/colors.ts';
 import {ImageUrl} from '@customTypes/model/apiTypes.ts';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconChevronRight} from '@assets/AssetsProvider.ts';
@@ -42,43 +41,6 @@ const Image = styled.img`
     object-fit: cover;
     object-position: center;
     overflow: hidden;
-  `};
-`;
-
-const Pagination = styled.div`
-  ${() => css`
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-
-    @keyframes spin {
-      100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
-    }
-
-    .custom-bullet {
-      cursor: pointer;
-      position: relative;
-      height: 10px;
-      width: 10px;
-      border-radius: 50%;
-      background: ${colors.primaryAction};
-
-      &--active:after {
-        content: '';
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: url('/src/assets/icons/ic_orbit.svg') no-repeat center;
-        background-size: contain;
-        animation: spin 4s linear infinite;
-      }
-    }
   `};
 `;
 
@@ -128,8 +90,6 @@ const ImageSlider = ({images}: ComponentProps) => {
           <Icon icon={iconChevronRight} size={42} />
         </NavigationNext>
       </SwiperWrapper>
-
-      <Pagination id={'customPagination'}></Pagination>
     </Root>
   );
 };
