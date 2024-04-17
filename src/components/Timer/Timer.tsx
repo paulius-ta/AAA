@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
 import useTimer from '@hooks/useTimer.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   endTime: number;
@@ -20,6 +21,10 @@ const Root = styled.div`
     font-size: 24px;
     padding: 10px;
     border-radius: 5px;
+
+    ${breakpoints.mobile`
+      font-size: 16px;
+    `}
   `};
 `;
 

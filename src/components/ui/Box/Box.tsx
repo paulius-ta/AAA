@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import {ReactNode} from 'react';
 import colors from '@styles/colors.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   children: ReactNode;
@@ -13,7 +14,7 @@ const Root = styled.div<{$padding?: number; $secondary?: boolean}>`
     width: 100%;
     height: fit-content;
     background: ${colors.boxBackground};
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 20px;
 
     ${$padding &&
@@ -24,6 +25,10 @@ const Root = styled.div<{$padding?: number; $secondary?: boolean}>`
     ${$secondary &&
     css`
       background: ${colors.background};
+    `}
+      
+    ${breakpoints.mobile`
+      padding: 10px;
     `}
   `};
 `;

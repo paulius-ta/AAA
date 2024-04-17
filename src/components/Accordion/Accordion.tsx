@@ -43,6 +43,8 @@ const BottomContainer = styled.div`
 const IconWrapper = styled.div`
   ${() => css`
     cursor: pointer;
+    display: flex;
+    align-items: center;
   `};
 `;
 

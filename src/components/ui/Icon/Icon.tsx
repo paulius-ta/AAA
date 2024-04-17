@@ -1,5 +1,6 @@
 import {createElement, FunctionComponent} from 'react';
 import styled, {css} from 'styled-components';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   icon: FunctionComponent<SimpleObject>;
@@ -14,6 +15,12 @@ const Root = styled(({icon, className, size}: ComponentProps) =>
     width: ${size ? size : '20'}px;
     min-width: ${size ? size : '20'}px;
     height: ${size ? size : '20'}px;
+
+    // ${breakpoints.mobile`
+    //   width: ${size ? size : '16'}px;
+    //   min-width: ${size ? size : '16'}px;
+    //   height: ${size ? size : '16'}px;
+    // `}
   `}
 `;
 

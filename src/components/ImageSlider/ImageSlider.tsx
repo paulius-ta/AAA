@@ -4,6 +4,8 @@ import useImageSlider from '@hooks/useImageSlider.ts';
 import {ImageUrl} from '@customTypes/model/apiTypes.ts';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconChevronRight} from '@assets/AssetsProvider.ts';
+import useViewport from '@utils/useViewport.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   images: ImageUrl[];
@@ -27,7 +29,7 @@ const SwiperWrapper = styled.div`
     swiper-container {
       height: 100%;
       width: 100%;
-      border-radius: 10px;
+      border-radius: 5px;
       overflow: hidden;
     }
   `};
@@ -53,8 +55,15 @@ const NavigationNext = styled.div`
     transform: translateY(-50%);
     height: 50px;
     width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 10px;
     z-index: 1;
+
+    ${breakpoints.mobile`
+      margin: 0;     
+    `}
 
     &.swiper-button-disabled {
       visibility: hidden;
@@ -71,6 +80,7 @@ const NavigationPrev = styled(NavigationNext)`
 
 const ImageSlider = ({images}: ComponentProps) => {
   const {swiperRef} = useImageSlider();
+  const {isMobile} = useViewport();
 
   return (
     <Root>
@@ -84,10 +94,10 @@ const ImageSlider = ({images}: ComponentProps) => {
         </swiper-container>
 
         <NavigationPrev id={'customPrev'}>
-          <Icon icon={iconChevronRight} size={42} />
+          <Icon icon={iconChevronRight} size={isMobile ? 20 : 42} />
         </NavigationPrev>
         <NavigationNext id={'customNext'}>
-          <Icon icon={iconChevronRight} size={42} />
+          <Icon icon={iconChevronRight} size={isMobile ? 20 : 42} />
         </NavigationNext>
       </SwiperWrapper>
     </Root>

@@ -12,18 +12,27 @@ import Button from '@components/ui/Button/Button.tsx';
 import {dataImages} from '@data/dataImages.ts';
 import {useNavigate} from 'react-router-dom';
 import routerPaths from '@config/routerPaths.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 const Root = styled.div`
   ${() => css`
     padding: 50px 0;
     width: 100%;
     height: 100%;
+
+    ${breakpoints.mobile`
+      padding: 10px 0;
+    `}
   `};
 `;
 
 const StyledScrollingText = styled(ScrollingText)`
   ${() => css`
     margin-bottom: 70px;
+
+    ${breakpoints.mobile`
+      margin-bottom: 20px;
+    `}
   `};
 `;
 

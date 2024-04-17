@@ -7,6 +7,8 @@ import Timer from '@components/Timer/Timer.tsx';
 import Separator from '@components/ui/Separator/Separator.tsx';
 import colors from '@styles/colors.ts';
 import useDateTimeFormatter from '@utils/useDateTimeFormatter.ts';
+import breakpoints from '@styles/breakpoints.ts';
+import useViewport from '@utils/useViewport.ts';
 
 const Root = styled(Box)``;
 
@@ -16,6 +18,11 @@ const Row = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    ${breakpoints.mobile`
+      flex-direction: column-reverse;
+      gap: 10px;
+    `}
   `};
 `;
 
@@ -26,6 +33,10 @@ const LeftContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 20px;
+
+    ${breakpoints.mobile`
+      width: 100%;
+    `}
   `};
 `;
 
@@ -33,6 +44,10 @@ const RightContainer = styled.div`
   ${() => css`
     width: 50%;
     height: 100%;
+
+    ${breakpoints.mobile`
+      width: 100%;
+    `}
   `};
 `;
 
@@ -42,6 +57,10 @@ const Currency = styled.span`
     font-weight: normal;
     font-size: 14px;
     color: ${colors.neutral};
+
+    ${breakpoints.mobile`
+      font-size: 12px;
+    `}
   `};
 `;
 
@@ -60,6 +79,7 @@ const TextWrapper = styled.div`
 
 const BidTimerBox = () => {
   const {getTimestamp} = useDateTimeFormatter();
+  const {isDesktop} = useViewport();
 
   return (
     <Root>
@@ -72,7 +92,7 @@ const BidTimerBox = () => {
             </Text>
           </TextWrapper>
         </LeftContainer>
-        <Separator vertical space={20} />
+        {isDesktop && <Separator vertical space={20} />}
         <RightContainer>
           <Timer endTime={getTimestamp()} />
         </RightContainer>

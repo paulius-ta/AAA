@@ -6,6 +6,7 @@ import Text from '@components/ui/Text/Text.tsx';
 import Attributes from '@components/DescriptionBox/elements/Attributes.tsx';
 import colors from '@styles/colors.ts';
 import Accordion from '@components/Accordion/Accordion.tsx';
+import breakpoints from '@styles/breakpoints.ts';
 interface ComponentProps extends CustomComponent {
   data: Description;
 }
@@ -26,6 +27,11 @@ const GridRow = styled.div`
     align-items: baseline;
     gap: 40px;
     grid-template-columns: auto 1fr;
+
+    ${breakpoints.mobile`
+      grid-template-columns: auto;
+      gap: 10px;      
+    `}
   `};
 `;
 

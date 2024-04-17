@@ -6,6 +6,7 @@ import Text from '@components/ui/Text/Text.tsx';
 import colors from '@styles/colors.ts';
 import Accordion from '@components/Accordion/Accordion.tsx';
 import {useState} from 'react';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   data: History;
@@ -85,6 +86,10 @@ const Currency = styled.span`
     font-size: 14px;
     line-height: 150%;
     color: ${colors.neutral};
+
+    ${breakpoints.mobile`
+      font-size: 12px;
+    `}
   `};
 `;
 

@@ -1,4 +1,5 @@
 import styled, {css} from 'styled-components';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {}
 
@@ -17,6 +18,10 @@ const Container = styled.div`
     overflow: hidden;
     user-select: none;
     gap: 100px;
+
+    ${breakpoints.mobile`
+      height: 55px;        
+    `}
   `};
 `;
 
@@ -40,6 +45,11 @@ const Item = styled.div`
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+
+    ${breakpoints.mobile`
+      font-size: 40px;
+      line-height: 55px;        
+    `}
   `};
 `;
 

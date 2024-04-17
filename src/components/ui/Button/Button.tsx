@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import {ReactNode} from 'react';
 import colors from '@styles/colors.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   children: ReactNode;
@@ -23,6 +24,10 @@ const Root = styled.div<{$w100?: boolean}>`
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+
+    ${breakpoints.mobile`
+      font-size: 20px;      
+    `}
 
     ${$w100 &&
     css`

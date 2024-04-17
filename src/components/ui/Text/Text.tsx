@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
 import {ReactNode} from 'react';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   children: ReactNode;
@@ -17,6 +18,10 @@ const Root = styled.p<{$style?: string; $size?: number; $boxed?: boolean}>`
     font-size: ${$size ? $size : '16'}px;
     line-height: 125%;
     color: ${colors.primaryText};
+
+    ${breakpoints.mobile`
+      font-size: ${$size ? $size : '14'}px;
+    `}
 
     ${$style === 'bold' &&
     css`

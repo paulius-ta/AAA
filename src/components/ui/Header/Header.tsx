@@ -1,5 +1,6 @@
 import styled, {css} from 'styled-components';
 import {ReactNode} from 'react';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   children: ReactNode;
@@ -11,6 +12,10 @@ const Root = styled.h1`
     font-size: 36px;
     font-weight: normal;
     line-height: 125%;
+
+    ${breakpoints.mobile`
+      font-size: 24px;      
+    `}
   `};
 `;
 
