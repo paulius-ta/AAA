@@ -20,8 +20,8 @@ const Root = styled.div`
   `}
 `;
 
-const Layout = ({children}: ComponentProps) => {
-  return <Root>{children}</Root>;
+const Layout = ({className, children}: ComponentProps) => {
+  return <Root className={className}>{children}</Root>;
 };
 
 export default Layout;
