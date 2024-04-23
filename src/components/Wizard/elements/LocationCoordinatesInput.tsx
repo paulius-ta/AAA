@@ -5,6 +5,8 @@ import {locationCoordinateOptions} from '@data/dataContactDetailsForm.ts';
 import Input from '@components/ui/Input/Input.tsx';
 import {Control, FieldErrors, UseFormRegister} from 'react-hook-form';
 import {ContactDetails} from '@customTypes/model/apiTypes.ts';
+import breakpoints from '@styles/breakpoints.ts';
+import useViewport from '@utils/useViewport.ts';
 
 interface ComponentProps extends CustomComponent {
   register: UseFormRegister<ContactDetails>;
@@ -27,6 +29,10 @@ const CoordinateContainer = styled.div`
     width: 100%;
     display: flex;
     gap: 10px;
+
+    ${breakpoints.mobile`
+      flex-direction: column;
+    `}
   `};
 `;
 
@@ -42,27 +48,28 @@ const LocationCoordinatesInput = ({
   control,
   errors,
 }: ComponentProps) => {
+  const {isDesktop} = useViewport();
   return (
     <Root>
       <Label>cosmic phone number:</Label>
       <CoordinateContainer>
         <SelectContainer>
           <Select
-            width={80}
+            width={isDesktop ? 80 : undefined}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.lat.prefix1'}
             error={errors.coordinates?.lat?.prefix1?.message}
           />
           <Select
-            width={80}
+            width={isDesktop ? 80 : undefined}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.lat.prefix2'}
             error={errors.coordinates?.lat?.prefix2?.message}
           />
           <Select
-            width={80}
+            width={isDesktop ? 80 : undefined}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.lat.prefix3'}
@@ -79,21 +86,21 @@ const LocationCoordinatesInput = ({
       <CoordinateContainer>
         <SelectContainer>
           <Select
-            width={80}
+            width={isDesktop ? 80 : undefined}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.long.prefix1'}
             error={errors.coordinates?.long?.prefix1?.message}
           />
           <Select
-            width={80}
+            width={isDesktop ? 80 : undefined}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.long.prefix2'}
             error={errors.coordinates?.long?.prefix2?.message}
           />
           <Select
-            width={80}
+            width={isDesktop ? 80 : undefined}
             options={locationCoordinateOptions}
             control={control}
             name={'coordinates.long.prefix3'}

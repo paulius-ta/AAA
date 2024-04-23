@@ -5,6 +5,7 @@ import Button from '@components/ui/Button/Button.tsx';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconPayment} from '@assets/AssetsProvider.ts';
 import usePaymentDetailsTransition from '@components/Wizard/transitions/usePaymentDetailsTransition.ts';
+import useViewport from '@utils/useViewport.ts';
 
 interface ComponentProps extends CustomComponent {}
 
@@ -37,6 +38,7 @@ const PaymentDetailsStep = ({className}: ComponentProps) => {
     errors,
     securityCodeErrors,
   } = usePaymentDetailsTransition();
+  const {isMobile} = useViewport();
 
   return (
     <Root className={className}>
@@ -48,7 +50,9 @@ const PaymentDetailsStep = ({className}: ComponentProps) => {
         errors={errors}
         securityCodeErrors={securityCodeErrors}
       />
-      <StyledButton onClick={handleTransition}>Next</StyledButton>
+      <StyledButton onClick={handleTransition} w100={isMobile}>
+        Next
+      </StyledButton>
     </Root>
   );
 };

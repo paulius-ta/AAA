@@ -2,6 +2,7 @@ import styled, {css} from 'styled-components';
 import {FieldValues, Path, UseFormRegister} from 'react-hook-form';
 import Label from '@components/ui/Label/Label.tsx';
 import colors from '@styles/colors.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps<T extends FieldValues> extends CustomComponent {
   register: UseFormRegister<T>;
@@ -37,6 +38,10 @@ const InputField = styled.input<{$showCurrency?: boolean}>`
     border-radius: 5px;
     text-overflow: ellipsis;
 
+    ${breakpoints.mobile`
+      font-size: 14px;
+    `}
+
     &::placeholder {
       color: ${colors.neutral20};
     }
@@ -57,6 +62,10 @@ const InputFieldWrapper = styled.div`
     height: 44px;
     width: 100%;
     position: relative;
+
+    ${breakpoints.mobile`
+      height: 38px;
+    `}
   `};
 `;
 

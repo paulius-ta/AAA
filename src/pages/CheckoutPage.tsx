@@ -9,18 +9,30 @@ import ImagesBox from '@components/ImagesBox/ImagesBox.tsx';
 import {dataImages} from '@data/dataImages.ts';
 import WizardNavigator from '@components/WizardNavigator/WizardNavigator.tsx';
 import Wizard from '@components/Wizard/Wizard.tsx';
+import breakpoints from '@styles/breakpoints.ts';
+import useViewport from '@utils/useViewport.ts';
+import Accordion from '@components/Accordion/Accordion.tsx';
+import Box from '@components/ui/Box/Box.tsx';
 
 const Root = styled.div`
   ${() => css`
     padding: 50px 0;
     width: 100%;
     height: 100%;
+
+    ${breakpoints.mobile`
+      padding: 10px 0;
+    `}
   `};
 `;
 
 const StyledScrollingText = styled(ScrollingText)`
   ${() => css`
     margin-bottom: 70px;
+
+    ${breakpoints.mobile`
+      margin-bottom: 20px;
+    `}
   `};
 `;
 
@@ -41,6 +53,7 @@ const RightSideContainer = styled.div`
 `;
 
 const CheckoutPage = () => {
+  const {isDesktop, isMobile} = useViewport();
   return (
     <Root>
       <StyledScrollingText />
@@ -49,12 +62,28 @@ const CheckoutPage = () => {
           <WizardNavigator />
           <Wizard />
         </LeftSideContainer>
-        <RightSideContainer>
-          <IdentifierBox identifier={dataDescription.id} />
-          <BidTimerBox />
-          <DescriptionBox data={dataDescription} />
-          <ImagesBox data={dataImages} />
-        </RightSideContainer>
+
+        {isDesktop && (
+          <RightSideContainer>
+            <IdentifierBox identifier={dataDescription.id} />
+            <BidTimerBox />
+          </RightSideContainer>
+        )}
+
+        {isMobile && (
+          <Box>
+            <Accordion
+              component={<IdentifierBox identifier={dataDescription.id} />}
+              isAutoCollapsed
+            >
+              <RightSideContainer>
+                <BidTimerBox />
+                <DescriptionBox data={dataDescription} secondary />
+                <ImagesBox data={dataImages} secondary />
+              </RightSideContainer>
+            </Accordion>
+          </Box>
+        )}
       </Layout>
     </Root>
   );

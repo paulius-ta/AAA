@@ -5,6 +5,7 @@ import Button from '@components/ui/Button/Button.tsx';
 import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconContact} from '@assets/AssetsProvider.ts';
 import useContactDetailsTransition from '@components/Wizard/transitions/useContactDetailsTransition.ts';
+import useViewport from '@utils/useViewport.ts';
 
 interface ComponentProps extends CustomComponent {}
 
@@ -30,6 +31,7 @@ const StyledIcon = styled(Icon)`
 const ContactDetailsStep = ({className}: ComponentProps) => {
   const {handleTransition, register, control, errors} =
     useContactDetailsTransition();
+  const {isMobile} = useViewport();
 
   return (
     <Root className={className}>
@@ -39,7 +41,9 @@ const ContactDetailsStep = ({className}: ComponentProps) => {
         control={control}
         errors={errors}
       />
-      <StyledButton onClick={() => handleTransition()}>Next</StyledButton>
+      <StyledButton onClick={() => handleTransition()} w100={isMobile}>
+        Next
+      </StyledButton>
     </Root>
   );
 };

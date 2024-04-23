@@ -1,5 +1,6 @@
 import {css} from 'styled-components';
 import colors from '@styles/colors.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 const reactSelect = css`
   .select__control {
@@ -8,6 +9,10 @@ const reactSelect = css`
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
     padding: 10px;
+
+    ${breakpoints.mobile`    
+      height: 38px;
+    `}
 
     &:hover {
       border: 1px solid ${colors.neutral};

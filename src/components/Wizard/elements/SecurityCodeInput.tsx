@@ -3,6 +3,7 @@ import Label from '@components/ui/Label/Label.tsx';
 import {Control, FieldErrors, Path} from 'react-hook-form';
 import SecurityCode from '@components/Wizard/elements/SecurityCode.tsx';
 import {SecurityCodeDetails} from '@customTypes/model/apiTypes.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   control: Control<SecurityCodeDetails>;
@@ -20,6 +21,10 @@ const Root = styled.div`
     margin-top: 20px;
     display: flex;
     gap: 5px;
+
+    ${breakpoints.mobile`
+      flex-direction: column;
+    `}
   `};
 `;
 

@@ -2,6 +2,7 @@ import styled, {css} from 'styled-components';
 import colors from '@styles/colors.ts';
 import {Control, Controller, Path} from 'react-hook-form';
 import {SecurityCodeDetails} from '@customTypes/model/apiTypes.ts';
+import breakpoints from '@styles/breakpoints.ts';
 
 interface ComponentProps extends CustomComponent {
   control: Control<SecurityCodeDetails>;
@@ -23,6 +24,10 @@ const Root = styled.div`
     padding: 10px;
     border: 1px solid ${colors.neutral};
     border-radius: 5px;
+
+    ${breakpoints.mobile`
+      max-width: unset;
+    `}
 
     &.error {
       border: 1px solid ${colors.error};
