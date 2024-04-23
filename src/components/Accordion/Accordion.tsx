@@ -5,7 +5,8 @@ import {iconChevronDown} from '@assets/AssetsProvider.ts';
 import {FunctionComponent, ReactNode} from 'react';
 interface ComponentProps extends CustomComponent {
   children: ReactNode;
-  icon: FunctionComponent<SimpleObject>;
+  icon?: FunctionComponent<SimpleObject>;
+  component?: ReactNode;
   isAutoCollapsed?: boolean;
 }
 
@@ -16,6 +17,7 @@ const TopContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-content: center;
+    gap: 10px;
   `};
 `;
 
@@ -42,6 +44,7 @@ const BottomContainer = styled.div`
 
 const IconWrapper = styled.div`
   ${() => css`
+    margin-left: auto;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -57,12 +60,18 @@ const StyledIcon = styled(Icon)<{$isOpen: boolean}>`
   `};
 `;
 
-const Accordion = ({children, icon, isAutoCollapsed}: ComponentProps) => {
+const Accordion = ({
+  children,
+  icon,
+  component,
+  isAutoCollapsed,
+}: ComponentProps) => {
   const {isOpen, onClick} = useExtendableContent(isAutoCollapsed);
   return (
     <Root>
       <TopContainer>
-        <Icon icon={icon} />
+        {icon && !component && <Icon icon={icon} />}
+        {!icon && component && component}
         <IconWrapper onClick={() => onClick()}>
           <StyledIcon icon={iconChevronDown} $isOpen={isOpen} />
         </IconWrapper>
