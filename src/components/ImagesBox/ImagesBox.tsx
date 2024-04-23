@@ -6,6 +6,7 @@ import {Images} from '@customTypes/model/apiTypes.ts';
 
 interface ComponentProps extends CustomComponent {
   data: Images;
+  secondary?: boolean;
 }
 
 const Root = styled(Box)`
@@ -33,9 +34,9 @@ const Image = styled.img`
   `};
 `;
 
-const ImagesBox = ({data}: ComponentProps) => {
+const ImagesBox = ({data, secondary}: ComponentProps) => {
   return (
-    <Root>
+    <Root secondary={secondary}>
       <Accordion icon={iconImages}>
         <ImagesContainer>
           {data.images.map((image, index) => {

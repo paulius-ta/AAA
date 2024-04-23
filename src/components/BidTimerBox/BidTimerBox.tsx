@@ -10,6 +10,10 @@ import useDateTimeFormatter from '@utils/useDateTimeFormatter.ts';
 import breakpoints from '@styles/breakpoints.ts';
 import useViewport from '@utils/useViewport.ts';
 
+interface ComponentProps extends CustomComponent {
+  secondary?: boolean;
+}
+
 const Root = styled(Box)``;
 
 const Row = styled.div`
@@ -77,12 +81,12 @@ const TextWrapper = styled.div`
   `};
 `;
 
-const BidTimerBox = () => {
+const BidTimerBox = ({secondary}: ComponentProps) => {
   const {getTimestamp} = useDateTimeFormatter();
   const {isDesktop} = useViewport();
 
   return (
-    <Root>
+    <Root secondary={secondary}>
       <Row>
         <LeftContainer>
           <Icon icon={iconStar} />

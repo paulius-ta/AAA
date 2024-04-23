@@ -9,6 +9,7 @@ import Accordion from '@components/Accordion/Accordion.tsx';
 import breakpoints from '@styles/breakpoints.ts';
 interface ComponentProps extends CustomComponent {
   data: Description;
+  secondary?: boolean;
 }
 
 const Root = styled(Box)``;
@@ -43,9 +44,9 @@ const AttributesWrapper = styled.div`
   `};
 `;
 
-const DescriptionBox = ({data}: ComponentProps) => {
+const DescriptionBox = ({data, secondary}: ComponentProps) => {
   return (
-    <Root>
+    <Root secondary={secondary}>
       <Accordion icon={iconDescription}>
         <Row>
           <Text>Origin</Text>
