@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
-import useExperiments from '@xperiments/hooks/useExperiments.ts';
 import Button from '@components/ui/Button/Button.tsx';
+import useFetchTest from '@hooks/api/useFetchTest.ts';
 
 const Root = styled.div`
   ${() => css`
@@ -22,10 +22,13 @@ const StyledButton = styled(Button)`
 `;
 
 const ExperimentsPage = () => {
-  const {} = useExperiments();
+  const {data, isLoading} = useFetchTest();
+
+  if (isLoading) return <> loading</>;
 
   return (
     <Root>
+      <div> {JSON.stringify(data)} </div>
       <StyledButton onClick={() => {}}> Button</StyledButton>
     </Root>
   );
