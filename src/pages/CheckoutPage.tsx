@@ -67,6 +67,8 @@ const CheckoutPage = () => {
           <RightSideContainer>
             <IdentifierBox identifier={dataDescription.id} />
             <BidTimerBox />
+            <DescriptionBox data={dataDescription} />
+            <ImagesBox data={dataImages} />
           </RightSideContainer>
         )}
 
