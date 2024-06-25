@@ -1,7 +1,8 @@
 import useReactQuery from '@hooks/api/useReactQuery.ts';
+import {API_BASE_URL} from '@config/env.ts';
 const useFetchTest = () => {
   return useReactQuery({
-    endpoint: 'http://localhost:3000/test',
+    endpoint: `${API_BASE_URL}/test`,
     queryKey: 'test',
     opts: {
       enabled: true,
