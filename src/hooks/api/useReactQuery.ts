@@ -12,7 +12,7 @@ interface ReactQueryProps {
   opts: RequestOptions;
   method?: 'POST' | 'GET';
 }
-const useReactQuery = ({
+const useReactQuery = <I, E, O>({
   endpoint,
   queryKey,
   body,
@@ -28,7 +28,7 @@ const useReactQuery = ({
     options: opts,
   };
 
-  const queryOptions: UseQueryOptions = {
+  const queryOptions: UseQueryOptions<I, E, O> = {
     queryKey: [queryKey],
     queryFn: async () => {
       const response = await fetch(endpoint, fetchConfig);
@@ -46,7 +46,7 @@ const useReactQuery = ({
     ...opts,
   };
 
-  const queryResult = useQuery(queryOptions);
+  const queryResult = useQuery<I, E, O>(queryOptions);
 
   return {
     ...queryResult,
