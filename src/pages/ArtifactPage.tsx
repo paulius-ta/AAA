@@ -13,7 +13,7 @@ import {dataImages} from '@data/dataImages.ts';
 import {useNavigate} from 'react-router-dom';
 import routerPaths from '@config/routerPaths.ts';
 import breakpoints from '@styles/breakpoints.ts';
-import useAuctionItem from '@hooks/useAuctionItem.ts';
+import useArtifactPage from '@hooks/useArtifactPage.ts';
 
 const Root = styled.div`
   ${() => css`
@@ -64,18 +64,17 @@ const BidInputContainer = styled.div`
 `;
 
 const ArtifactPage = () => {
-  const {auctionItemData, isLoadingAuctionItem, isErrorAuctionItem} =
-    useAuctionItem();
+  const {descriptionData, isLoading, isError} = useArtifactPage();
 
   const navigate = useNavigate();
   const handleClick = () => {
     navigate({pathname: routerPaths.checkout()});
   };
 
-  if (isLoadingAuctionItem) return <div>Loading...</div>;
-  if (isErrorAuctionItem) return <div> Error</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div> Error</div>;
 
-  console.log(auctionItemData);
+  console.log(descriptionData);
 
   return (
     <Root>
