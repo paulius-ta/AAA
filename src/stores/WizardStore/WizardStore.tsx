@@ -8,6 +8,8 @@ import {
 class WizardStore {
   INITIAL_STEP = 0;
 
+  @observable accessor activeAuction: Nullable<number> = null;
+
   @observable accessor step: number = this.INITIAL_STEP;
 
   @observable accessor validStep: number = this.INITIAL_STEP;
@@ -47,6 +49,10 @@ class WizardStore {
     m: '0000000000000000000000000000000000000000000000000000000000000000',
     y: '0000000000000000000000000000000000000000000000000000000000000000',
   };
+
+  @action setActiveAuction(id: number) {
+    this.activeAuction = id;
+  }
 
   @action setStep(step: number) {
     this.step = step;
