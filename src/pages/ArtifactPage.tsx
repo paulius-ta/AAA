@@ -72,9 +72,7 @@ const ArtifactPage = () => {
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div> Error</div>;
-
-  console.log(descriptionData);
+  if (isError || !descriptionData) return <div> Error</div>;
 
   return (
     <Root>
@@ -92,7 +90,7 @@ const ArtifactPage = () => {
             </Button>
           </BidInputContainer>
           <HistoryBox data={dataHistory} />
-          <DescriptionBox data={dataDescription} />
+          <DescriptionBox data={descriptionData?.details} />
         </RightSideContainer>
       </Layout>
     </Root>
