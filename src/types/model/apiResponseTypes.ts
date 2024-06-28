@@ -1,4 +1,4 @@
-import {ArtifactAttribute} from '@customTypes/model/apiTypes.ts';
+import {Description} from '@customTypes/model/apiTypes.ts';
 
 export interface AuctionItemResponse {
   id: number;
@@ -12,11 +12,5 @@ export interface AuctionItemResponse {
 export interface DescriptionResponse {
   id: number;
   auctionItemId: number;
-  details: {
-    origin: string[];
-    number: number;
-    condition: string;
-    dimensions: number[];
-    attributes: ArtifactAttribute[];
-  };
+  details: Description;
 }
