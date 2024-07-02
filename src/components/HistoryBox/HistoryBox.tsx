@@ -40,7 +40,7 @@ const RowItem = styled.div`
       flex-basis: 20%;
     }
     &:nth-of-type(2) {
-      flex-basis: 40%;
+      max-width: 40%;
     }
     &:nth-of-type(3) {
       flex-basis: 40%;
@@ -68,6 +68,9 @@ const IndexText = styled(ExtendedText)`
 const DateText = styled(ExtendedText)`
   ${() => css`
     text-align: start;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   `};
 `;
 
@@ -94,18 +97,18 @@ const Currency = styled.span`
 `;
 
 const HistoryBox = ({data, secondary, isAutoCollapsed}: ComponentProps) => {
-  const [limit, setLimit] = useState(Math.min(data.entries.length, 3));
-  const [showAll, setShowAll] = useState(data.entries.length > limit);
+  const [limit, setLimit] = useState(Math.min(data.length, 3));
+  const [showAll, setShowAll] = useState(data.length > limit);
 
   const handleShowAll = () => {
-    setLimit(data.entries.length);
+    setLimit(data.length);
     setShowAll(false);
   };
 
   return (
     <Root secondary={secondary}>
       <Accordion icon={iconHistory} isAutoCollapsed={isAutoCollapsed}>
-        {data.entries.slice(0, limit).map((entry, index) => {
+        {data.slice(0, limit).map((entry, index) => {
           return (
             <Row key={index}>
               <RowItem>
@@ -114,7 +117,7 @@ const HistoryBox = ({data, secondary, isAutoCollapsed}: ComponentProps) => {
                 </IndexText>
               </RowItem>
               <RowItem>
-                <DateText>{entry.date}</DateText>
+                <DateText>{entry.timestamp}</DateText>
               </RowItem>
               <RowItem>
                 <AmountText boxed secondary={secondary}>
