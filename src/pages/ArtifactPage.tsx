@@ -6,7 +6,6 @@ import DescriptionBox from '@components/DescriptionBox/DescriptionBox.tsx';
 import {dataDescription} from '@data/dataDescription.ts';
 import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
 import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
-import {dataHistory} from '@data/dataHistory.ts';
 import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
 import Button from '@components/ui/Button/Button.tsx';
 import {dataImages} from '@data/dataImages.ts';
@@ -64,7 +63,7 @@ const BidInputContainer = styled.div`
 `;
 
 const ArtifactPage = () => {
-  const {descriptionData, isLoading, isError} = useArtifactPage();
+  const {descriptionData, historyData, isLoading, isError} = useArtifactPage();
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -72,7 +71,7 @@ const ArtifactPage = () => {
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError || !descriptionData) return <div> Error</div>;
+  if (isError || !descriptionData || !historyData) return <div> Error</div>;
 
   return (
     <Root>
@@ -89,7 +88,7 @@ const ArtifactPage = () => {
               Make a bid
             </Button>
           </BidInputContainer>
-          <HistoryBox data={dataHistory} />
+          <HistoryBox data={historyData} />
           <DescriptionBox data={descriptionData?.details} />
         </RightSideContainer>
       </Layout>
