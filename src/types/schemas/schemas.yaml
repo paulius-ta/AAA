@@ -48,25 +48,16 @@ components:
         type:
           type: string
     History:
-      type: object
-      required:
-        - id
-        - entries
-      properties:
-        id:
-          type: integer
-          format: int64
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/HistoryEntry'
+      type: array
+      items:
+        $ref: '#/components/schemas/HistoryEntry'
     HistoryEntry:
       type: object
       required:
-        - date
+        - timestamp
         - amount
       properties:
-        date:
+        timestamp:
           type: string
           format: date
         amount:

@@ -24,14 +24,10 @@ export interface components {
       id: string;
       type: string;
     };
-    History: {
-      /** Format: int64 */
-      id: number;
-      entries: components["schemas"]["HistoryEntry"][];
-    };
+    History: components["schemas"]["HistoryEntry"][];
     HistoryEntry: {
       /** Format: date */
-      date: string;
+      timestamp: string;
       /** Format: decimal */
       amount: string;
     };
