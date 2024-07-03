@@ -7,6 +7,7 @@ import colors from '@styles/colors.ts';
 import Accordion from '@components/Accordion/Accordion.tsx';
 import {useState} from 'react';
 import breakpoints from '@styles/breakpoints.ts';
+import useDateTimeFormatter from '@utils/useDateTimeFormatter.ts';
 
 interface ComponentProps extends CustomComponent {
   data: History;
@@ -99,6 +100,7 @@ const Currency = styled.span`
 const HistoryBox = ({data, secondary, isAutoCollapsed}: ComponentProps) => {
   const [limit, setLimit] = useState(Math.min(data.length, 3));
   const [showAll, setShowAll] = useState(data.length > limit);
+  const {formatTimestamp} = useDateTimeFormatter();
 
   const handleShowAll = () => {
     setLimit(data.length);
@@ -117,7 +119,7 @@ const HistoryBox = ({data, secondary, isAutoCollapsed}: ComponentProps) => {
                 </IndexText>
               </RowItem>
               <RowItem>
-                <DateText>{entry.timestamp}</DateText>
+                <DateText>{formatTimestamp(entry.timestamp)}</DateText>
               </RowItem>
               <RowItem>
                 <AmountText boxed secondary={secondary}>

@@ -5,8 +5,13 @@ const useDateTimeFormatter = () => {
     return dayjs().startOf('hour').add(hour, 'hour').unix();
   };
 
+  const formatTimestamp = (timestampString: string) => {
+    return dayjs(timestampString).format('DD-MM-YY, HH:mm:ss');
+  };
+
   return {
     getTimestamp,
+    formatTimestamp,
   };
 };
 
