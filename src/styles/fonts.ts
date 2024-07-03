@@ -36,6 +36,12 @@ const fonts = css`
     font-family: 'digital';
     src: url('/src/assets/fonts/DigitalNumbers-Regular.ttf') format('truetype');
   }
+
+  @font-face {
+    font-family: 'vertical-horizon-academy';
+    src: url('/src/assets/fonts/VerticalHorizonAcademy-ywZwm.otf')
+      format('opentype');
+  }
 `;
 
 export default fonts;
