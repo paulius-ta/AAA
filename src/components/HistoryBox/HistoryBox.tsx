@@ -22,7 +22,7 @@ const Row = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 0;
   `};
 `;
 
@@ -38,10 +38,11 @@ const StyledRow = styled(Row)`
 const RowItem = styled.div`
   ${() => css`
     &:nth-of-type(1) {
-      flex-basis: 20%;
+      flex-basis: 15%;
     }
     &:nth-of-type(2) {
-      max-width: 40%;
+      flex-basis: 45%;
+      max-width: 45%;
     }
     &:nth-of-type(3) {
       flex-basis: 40%;
