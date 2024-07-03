@@ -13,6 +13,7 @@ import {useNavigate} from 'react-router-dom';
 import routerPaths from '@config/routerPaths.ts';
 import breakpoints from '@styles/breakpoints.ts';
 import useArtifactPage from '@hooks/useArtifactPage.ts';
+import Loading from '@components/Loading/Loading.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -70,7 +71,7 @@ const ArtifactPage = () => {
     navigate({pathname: routerPaths.checkout()});
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
   if (isError || !descriptionData || !historyData) return <div> Error</div>;
 
   return (
