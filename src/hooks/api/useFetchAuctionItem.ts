@@ -10,7 +10,7 @@ const useFetchAuctionItem = () => {
     endpoint: `${API_BASE_URL}/auctionItem`,
     queryKey: 'auction-item-active',
     opts: {
-      enabled: true,
+      enabled: !wizardStore.activeAuction,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
     },
