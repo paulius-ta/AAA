@@ -4,8 +4,13 @@ import ContactDetailsStep from '@components/Wizard/steps/ContactDetailsStep.tsx'
 import PaymentDetailsStep from '@components/Wizard/steps/PaymentDetailsStep.tsx';
 import PreviewStep from '@components/Wizard/steps/PreviewStep.tsx';
 import c from 'classnames';
+import {History} from '@customTypes/model/apiTypes.ts';
 
-const Wizard = observer(() => {
+interface ComponentProps extends CustomComponent {
+  history: History;
+}
+
+const Wizard = observer(({history}: ComponentProps) => {
   const {getCurrentStep} = useWizard();
   const step = getCurrentStep()?.id;
 
@@ -13,7 +18,10 @@ const Wizard = observer(() => {
     <>
       <ContactDetailsStep className={c({'display-none': step !== 0})} />
       <PaymentDetailsStep className={c({'display-none': step !== 1})} />
-      <PreviewStep className={c({'display-none': step !== 2})} />
+      <PreviewStep
+        history={history}
+        className={c({'display-none': step !== 2})}
+      />
     </>
   );
 });

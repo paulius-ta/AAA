@@ -7,10 +7,12 @@ import Icon from '@components/ui/Icon/Icon.tsx';
 import {iconPreview} from '@assets/AssetsProvider.ts';
 import Input from '@components/ui/Input/Input.tsx';
 import usePreviewTransition from '@components/Wizard/transitions/usePreviewTransition.ts';
-import {dataHistory} from '@data/dataHistory.ts';
 import HistoryBox from '@components/HistoryBox/HistoryBox.tsx';
+import {History} from '@customTypes/model/apiTypes.ts';
 
-interface ComponentProps extends CustomComponent {}
+interface ComponentProps extends CustomComponent {
+  history: History;
+}
 
 const Root = styled(Box)`
   ${() => css`
@@ -41,7 +43,7 @@ const BottomContainer = styled.div`
   `};
 `;
 
-const PreviewStep = ({className}: ComponentProps) => {
+const PreviewStep = ({className, history}: ComponentProps) => {
   const {handleTransition, register, contactDetails, paymentDetails} =
     usePreviewTransition();
 
@@ -55,7 +57,7 @@ const PreviewStep = ({className}: ComponentProps) => {
         <StyledButton w100 onClick={handleTransition}>
           Make a bid
         </StyledButton>
-        <HistoryBox data={dataHistory} secondary isAutoCollapsed />
+        <HistoryBox data={history} secondary isAutoCollapsed />
       </BottomContainer>
     </Root>
   );
