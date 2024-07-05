@@ -2,7 +2,6 @@ import styled, {css} from 'styled-components';
 import ScrollingText from '@components/ScrollingText/ScrollingText.tsx';
 import Layout from '@components/Layout/Layout.tsx';
 import BidTimerBox from '@components/BidTimerBox/BidTimerBox.tsx';
-import {dataDescription} from '@data/dataDescription.ts';
 import IdentifierBox from '@components/IdentiferBox/IdentifierBox.tsx';
 import DescriptionBox from '@components/DescriptionBox/DescriptionBox.tsx';
 import ImagesBox from '@components/ImagesBox/ImagesBox.tsx';
@@ -13,6 +12,8 @@ import breakpoints from '@styles/breakpoints.ts';
 import useViewport from '@utils/useViewport.ts';
 import Accordion from '@components/Accordion/Accordion.tsx';
 import Box from '@components/ui/Box/Box.tsx';
+import useCheckoutPage from '@hooks/useCheckoutPage.ts';
+import Loading from '@components/Loading/Loading.tsx';
 
 const Root = styled.div`
   ${() => css`
@@ -54,20 +55,25 @@ const RightSideContainer = styled.div`
 
 const CheckoutPage = () => {
   const {isDesktop, isMobile} = useViewport();
+  const {descriptionData, historyData, isLoading, isError} = useCheckoutPage();
+
+  if (isLoading) return <Loading />;
+  if (isError || !descriptionData || !historyData) return <div> Error</div>;
+
   return (
     <Root>
       <StyledScrollingText />
       <Layout>
         <LeftSideContainer>
           <WizardNavigator />
-          <Wizard />
+          <Wizard history={historyData} />
         </LeftSideContainer>
 
         {isDesktop && (
           <RightSideContainer>
-            <IdentifierBox identifier={dataDescription.id} />
+            <IdentifierBox identifier={descriptionData.auctionItemId} />
             <BidTimerBox />
-            <DescriptionBox data={dataDescription} />
+            <DescriptionBox data={descriptionData.details} />
             <ImagesBox data={dataImages} />
           </RightSideContainer>
         )}
@@ -75,12 +81,14 @@ const CheckoutPage = () => {
         {isMobile && (
           <Box>
             <Accordion
-              component={<IdentifierBox identifier={dataDescription.id} />}
+              component={
+                <IdentifierBox identifier={descriptionData.auctionItemId} />
+              }
               isAutoCollapsed
             >
               <RightSideContainer>
                 <BidTimerBox />
-                <DescriptionBox data={dataDescription} secondary />
+                <DescriptionBox data={descriptionData.details} secondary />
                 <ImagesBox data={dataImages} secondary />
               </RightSideContainer>
             </Accordion>
