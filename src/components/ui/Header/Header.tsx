@@ -19,8 +19,8 @@ const Root = styled.h1`
   `};
 `;
 
-const Header = ({children}: ComponentProps) => {
-  return <Root>{children}</Root>;
+const Header = ({children, className}: ComponentProps) => {
+  return <Root className={className}>{children}</Root>;
 };
 
 export default Header;
