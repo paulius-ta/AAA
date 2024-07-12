@@ -14,19 +14,18 @@ interface ComponentProps extends CustomComponent {
 const Root = styled.div`
   ${() => css`
     min-width: 0;
-    aspect-ratio: 1;
   `};
 `;
 
 const SwiperWrapper = styled.div`
   ${() => css`
     position: relative;
-    height: 100%;
     width: 100%;
     min-height: 0;
     min-width: 0;
 
     swiper-container {
+      aspect-ratio: 1;
       height: 100%;
       width: 100%;
       border-radius: 5px;
@@ -78,6 +77,42 @@ const NavigationPrev = styled(NavigationNext)`
   `};
 `;
 
+const PaginationContainer = styled.div`
+  ${() => css`
+    top: auto !important;
+    bottom: auto !important;
+    position: relative;
+    margin-top: 20px;
+
+    .swiper-pagination-bullet {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      margin: 0 5px;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+      overflow: hidden;
+      user-select: none;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &.swiper-pagination-bullet-active {
+        opacity: 1;
+      }
+
+      ${breakpoints.mobile`
+          display: none;
+          margin-top: 0;
+        `}
+    }
+  `};
+`;
+
 const ImageSlider = ({images}: ComponentProps) => {
   const {swiperRef} = useImageSlider();
   const {isMobile} = useViewport();
@@ -100,6 +135,7 @@ const ImageSlider = ({images}: ComponentProps) => {
           <Icon icon={iconChevronRight} size={isMobile ? 20 : 42} />
         </NavigationNext>
       </SwiperWrapper>
+      <PaginationContainer className="swiper-pagination" />
     </Root>
   );
 };
