@@ -12,6 +12,7 @@
       "@styles/*": ["styles/*"],
       "@stores/*": ["stores/*"],
       "@data/*": ["data/*"],
+      "@layout/*": ["layout/*"],
       "@xperiments/*": ["xperiments/*"],
     },
     "target": "ES2020",

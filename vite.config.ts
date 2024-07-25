@@ -31,6 +31,7 @@ export default defineConfig({
       '@styles': '/src/styles',
       '@stores': '/src/stores',
       '@data': '/src/data',
+      '@layout': '/src/layout',
       '@xperiments': '/src/xperiments',
     },
   },
