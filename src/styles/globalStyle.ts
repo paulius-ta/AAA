@@ -10,16 +10,14 @@ const GlobalStyle = createGlobalStyle`
     ${animations}
     
     ${() => css`
-      html,
-      body {
-        min-height: calc(100vh + 100px);
-      }
-
       html {
+        height: 100%;
         background: ${colors.background};
       }
 
       body {
+        height: 100%;
+        min-height: calc(100vh + 200px);
         font-family: 'foreign', sans-serif;
         background-size: 30px 30px;
         background-image: radial-gradient(
@@ -27,6 +25,12 @@ const GlobalStyle = createGlobalStyle`
           ${colors.grid} 1px,
           rgba(0, 0, 0, 0) 1px
         );
+
+        #root {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
 
         * {
           box-sizing: border-box;
