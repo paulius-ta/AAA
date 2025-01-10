@@ -1,5 +1,5 @@
 # AAA
-Alien Artifact Auction - A React/TS frontend project where one can bid on mysterious extraterrestrial relics
+Alien Artifact Auction - A React/TS frontend project where one can bid on mysterious extraterrestrial relics.
 
 This is an unfinished project that probably won't be completed (newer projects are always more fun). 
 
